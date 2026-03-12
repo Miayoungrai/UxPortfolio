@@ -216,13 +216,52 @@
     margin-bottom: 64px;
   }
 
+
+  /* HEADSHOT */
+  .headshot-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    margin-bottom: 40px;
+  }
+  .headshot-circle {
+    width: 200px; height: 200px; border-radius: 50%;
+    border: 3px dashed rgba(255,77,28,0.35);
+    background: var(--black);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; position: relative; overflow: hidden;
+    background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,77,28,0.03) 8px, rgba(255,77,28,0.03) 16px);
+  }
+  .headshot-circle img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+  }
+  .headshot-icon { font-size: 2rem; opacity: 0.3; }
+  .headshot-label {
+    font-family: "Syne", sans-serif; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--accent);
+    text-align: center; padding: 0 16px;
+  }
+  .headshot-hint {
+    font-family: "Syne", sans-serif; font-size: 0.65rem;
+    letter-spacing: 1px; color: var(--muted); text-align: center;
+  }
+
   /* ABOUT */
   #about {
     background: var(--mid);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
-    align-items: center;
+    align-items: start;
+  }
+  .about-top-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 8px;
+  }
+  .about-heading { flex: 1; }
+  .about-right {
+    display: flex; flex-direction: column; gap: 32px;
   }
   .about-left { }
   .about-intro {
@@ -515,12 +554,16 @@
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .reveal {
+  .js-ready .reveal {
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  .reveal.visible {
+  .reveal.visible, .reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .js-ready .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -584,9 +627,25 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-left reveal">
-    <div class="section-label">About Me</div>
-    <h2 class="section-title">Human-First<br>Design</h2>
-    <div class="divider"></div>
+
+    <!-- TOP ROW: heading + headshot side by side -->
+    <div class="about-top-row">
+      <div class="about-heading">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Human-First<br>Design</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="headshot-wrap">
+        <div class="headshot-circle">
+          <!-- TO ADD YOUR PHOTO: save your image in the same folder,
+               then replace the two lines below with: <img src="your-photo.jpg" alt="Mia"> -->
+          <div class="headshot-icon">👤</div>
+          <div class="headshot-label">Your Photo</div>
+        </div>
+        <div class="headshot-hint">→ your-photo.jpg</div>
+      </div>
+    </div>
+
     <p class="about-intro">
       I'm a UX designer with roots in <strong>interior design</strong> — which means I've always thought about how people move through, feel within, and interact with spaces. Now I bring that same spatial thinking to digital products.
     </p>
@@ -808,6 +867,9 @@
     });
   });
 
+  // Mark body as JS-ready so reveal animations activate
+  document.body.classList.add("js-ready");
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -818,8 +880,10 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0, rootMargin: "0px 0px -40px 0px" });
   reveals.forEach(el => observer.observe(el));
+  // Safety fallback: show any reveals still hidden after 2s
+  setTimeout(() => { reveals.forEach(el => el.classList.add("visible")); }, 2000);
 
   // Skill bars
   const barObserver = new IntersectionObserver((entries) => {
