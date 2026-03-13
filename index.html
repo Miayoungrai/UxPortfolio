@@ -786,9 +786,7 @@
     <p class="contact-sub">I'm open to new opportunities, freelance projects, and interesting collaborations.</p>
     <div class="contact-links">
       <a href="mailto:euphraimia@gmail.com" class="contact-link"><span class="dot"></span> euphraimia@gmail.com</a>
-      <a href="#" class="contact-link"><span class="dot"></span> LinkedIn</a>
-      <a href="#" class="contact-link"><span class="dot"></span> Dribbble</a>
-      <a href="#" class="contact-link"><span class="dot"></span> Read.cv</a>
+      <a href="your-cv.pdf" target="_blank" class="contact-link"><span class="dot"></span> Read.cv</a>
     </div>
   </div>
   <div class="contact-right reveal">
@@ -817,7 +815,7 @@
   <span class="footer-copy">UX Portfolio</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -885,10 +883,4 @@
       if (entry.isIntersecting) {
         const bars = entry.target.querySelectorAll('.skill-bar');
         bars.forEach(bar => {
-          setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 300);
-        });
-        barObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  document.querySelector('.skills-grid') && barObserver.observe(docume
+     
