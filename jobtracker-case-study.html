@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobbrief: AI Job Tracker | Mia's Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0a;--white:#f5f2ee;--accent:#ff4d1c;--accent2:#ffe14d;
+    --mid:#1c1c1c;--muted:#555;--border:#2a2a2a;
+    --teal:#00c2a8;--teal-soft:rgba(0,194,168,0.12);
+    --teal-dim:rgba(0,194,168,0.25);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none;}
+  .cursor{width:12px;height:12px;background:var(--teal);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s;}
+  .cursor-ring{width:36px;height:36px;border:1.5px solid var(--teal);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s ease-out,width .3s,height .3s;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;background:rgba(10,10,10,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;color:var(--white);text-decoration:none;}
+  .nav-logo span{color:var(--accent);}
+  .nav-back{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;}
+  .nav-back:hover{color:var(--teal);}
+  .nav-back::before{content:'←';transition:transform .2s;}
+  .nav-back:hover::before{transform:translateX(-4px);}
+
+  /* HERO */
+  .cs-hero{min-height:80vh;display:flex;flex-direction:column;justify-content:flex-end;padding:140px 48px 80px;position:relative;overflow:hidden;}
+  .cs-hero-bg{position:absolute;inset:0;background:linear-gradient(150deg,#040e0d 0%,#071a17 45%,#040e0d 100%);}
+  .orb1{position:absolute;width:700px;height:700px;background:var(--teal);opacity:.06;filter:blur(110px);border-radius:50%;top:-200px;right:-200px;pointer-events:none;}
+  .orb2{position:absolute;width:400px;height:400px;background:#ffe14d;opacity:.03;filter:blur(90px);border-radius:50%;bottom:0;left:10%;pointer-events:none;}
+  .cs-hero-content{position:relative;z-index:1;}
+  .cs-eyebrow{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:20px;opacity:0;animation:fadeUp .7s .2s forwards;}
+  .cs-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,120px);line-height:.92;letter-spacing:-1px;margin-bottom:28px;opacity:0;animation:fadeUp .7s .4s forwards;}
+  .cs-title span{color:var(--teal);}
+  .cs-summary{max-width:600px;font-size:1.1rem;color:rgba(245,242,238,.65);font-weight:300;font-style:italic;margin-bottom:48px;opacity:0;animation:fadeUp .7s .6s forwards;}
+  .cs-meta{display:flex;gap:48px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .8s forwards;}
+  .cs-meta-label{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .cs-meta-value{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:600;color:var(--white);}
+
+  /* BODY */
+  .cs-body{max-width:960px;margin:0 auto;padding:100px 48px;}
+  .cs-section{margin-bottom:96px;}
+  .cs-section-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;}
+  .cs-section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.5px;margin-bottom:32px;}
+  .cs-text{font-size:1.05rem;color:rgba(245,242,238,.75);line-height:1.85;margin-bottom:24px;font-weight:300;}
+  .cs-text strong{color:var(--white);font-weight:600;}
+  .cs-divider{width:48px;height:3px;background:var(--teal);margin:32px 0;}
+  .cs-quote{border-left:3px solid var(--teal);padding:24px 32px;margin:40px 0;background:var(--mid);}
+  .cs-quote p{font-size:1.15rem;font-style:italic;font-weight:300;color:rgba(245,242,238,.8);line-height:1.7;margin-bottom:12px;}
+  .cs-quote cite{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+  .cs-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:40px 0;}
+  .cs-card{background:var(--mid);padding:32px;border-top:3px solid var(--border);transition:border-color .3s;}
+  .cs-card:hover{border-color:var(--teal);}
+  .cs-card-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--teal);line-height:1;margin-bottom:8px;}
+  .cs-card-label{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+  .cs-card-desc{font-size:.88rem;color:rgba(245,242,238,.6);line-height:1.6;}
+  .cs-process{display:flex;flex-direction:column;gap:2px;margin:40px 0;}
+  .cs-step{display:grid;grid-template-columns:80px 1fr;background:var(--mid);padding:32px;gap:24px;align-items:start;transition:background .3s;}
+  .cs-step:hover{background:#232323;}
+  .cs-step-num{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:var(--border);line-height:1;}
+  .cs-step-title{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:8px;}
+  .cs-step-desc{font-size:.92rem;color:rgba(245,242,238,.6);line-height:1.65;}
+  .cs-results{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin:40px 0;}
+  .cs-result{background:var(--mid);padding:40px;border-bottom:3px solid transparent;transition:border-color .3s;}
+  .cs-result:hover{border-color:var(--accent2);}
+  .cs-result-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--accent2);line-height:1;margin-bottom:8px;}
+  .cs-result-title{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:10px;}
+  .cs-result-desc{font-size:.88rem;color:var(--muted);line-height:1.6;}
+  .cs-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;}
+  .cs-tag{padding:6px 16px;border:1px solid var(--border);font-family:'Syne',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+  /* IMAGE PLACEHOLDER */
+  .img-placeholder{position:relative;background:var(--mid);border:1.5px dashed rgba(0,194,168,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;overflow:hidden;margin:40px 0;padding:48px 24px;}
+  .img-placeholder::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,194,168,.018) 10px,rgba(0,194,168,.018) 20px);}
+  .iph-icon{font-size:2.4rem;opacity:.3;position:relative;z-index:1;}
+  .iph-label{font-family:'Syne',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);position:relative;z-index:1;}
+  .iph-hint{font-size:.82rem;color:var(--muted);position:relative;z-index:1;text-align:center;max-width:340px;line-height:1.6;}
+  .iph-filename{font-size:.72rem;color:rgba(0,194,168,.45);font-family:'DM Sans',sans-serif;font-style:italic;border:1px solid rgba(0,194,168,.18);padding:4px 14px;background:rgba(0,194,168,.04);position:relative;z-index:1;}
+  .iph-swap{min-height:420px;}
+  .iph-wide{min-height:520px;}
+  .iph-medium{min-height:340px;}
+  .img-placeholder img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+
+  /* RESEARCH GRID */
+  .research-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;}
+  .rc{background:var(--mid);padding:28px;}
+  .rc-label{font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+  .rc-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;margin-bottom:8px;}
+  .rc-body{font-size:.88rem;color:rgba(245,242,238,.5);line-height:1.6;}
+
+  /* PHONE SHOWCASE */
+  .phone-showcase{background:var(--mid);padding:40px;margin:40px 0;}
+  .phone-showcase-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:28px;}
+  .phone-row{display:flex;gap:20px;justify-content:center;align-items:flex-start;flex-wrap:wrap;}
+  .phone-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .phone-tag{font-family:'Syne',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:5px;}
+  .pf{width:185px;background:#111;border:2px solid #2a2a2a;border-radius:28px;padding:10px 7px;box-shadow:0 24px 64px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.04);}
+  .pf-notch{width:52px;height:7px;background:#1e1e1e;border-radius:4px;margin:0 auto 9px;}
+  .pf-screen{border-radius:18px;overflow:hidden;}
+  .phone-cap{font-family:'Syne',sans-serif;font-size:.56rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:center;max-width:160px;}
+
+  /* SCREEN: Before - chaotic spreadsheet view */
+  .sb{background:#111;}
+  .sb-nav{background:#1a1a1a;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;}
+  .sb-title{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;color:#f5f2ee;}
+  .sb-icon{width:16px;height:16px;background:#222;border-radius:3px;}
+  .sb-body{padding:8px;}
+  .sb-row-head{display:flex;gap:2px;margin-bottom:2px;}
+  .sb-col-h{flex:1;height:14px;background:#1e1e1e;border-radius:2px;}
+  .sb-col-h.wide{flex:2;}
+  .sb-job-row{display:flex;gap:2px;margin-bottom:2px;}
+  .sb-cell{flex:1;height:22px;background:#161616;border:1px solid #1e1e1e;border-radius:2px;display:flex;align-items:center;padding:0 4px;}
+  .sb-cell.wide{flex:2;}
+  .sb-cell-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+  .sb-cell-text{flex:1;height:5px;background:#2a2a2a;border-radius:2px;margin-left:4px;}
+  .sb-note{margin-top:6px;background:#161616;border:1px solid #1e1e1e;border-radius:3px;padding:6px 7px;}
+  .sb-note-label{font-family:'Syne',sans-serif;font-size:.38rem;color:#333;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
+  .sb-note-lines{display:flex;flex-direction:column;gap:2px;}
+  .sb-note-line{height:4px;background:#1e1e1e;border-radius:2px;}
+  .sb-note-line.short{width:60%;}
+
+  /* SCREEN: After - Dashboard home */
+  .sa{background:#060d0c;}
+  .sa-nav{background:rgba(0,194,168,.06);border-bottom:1px solid rgba(0,194,168,.1);padding:9px 12px;display:flex;align-items:center;justify-content:space-between;}
+  .sa-logo{font-family:'Bebas Neue',sans-serif;font-size:.75rem;color:var(--teal);letter-spacing:2px;}
+  .sa-ico{width:16px;height:16px;background:rgba(0,194,168,.15);border-radius:3px;}
+  .sa-body{padding:8px 10px;}
+  .sa-greeting{font-family:'Syne',sans-serif;font-size:.48rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(0,194,168,.7);margin-bottom:2px;}
+  .sa-name{font-family:'Bebas Neue',sans-serif;font-size:.9rem;color:#f5f2ee;margin-bottom:8px;}
+  .sa-ai-card{background:rgba(0,194,168,.07);border:1px solid rgba(0,194,168,.2);border-radius:5px;padding:8px;margin-bottom:7px;}
+  .sa-ai-label{font-family:'Syne',sans-serif;font-size:.38rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:4px;display:flex;align-items:center;gap:3px;}
+  .sa-ai-item{display:flex;align-items:center;gap:5px;margin-bottom:3px;}
+  .sa-ai-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;}
+  .sa-ai-text{height:5px;flex:1;background:rgba(0,194,168,.2);border-radius:2px;}
+  .sa-ai-pct{font-family:'Syne',sans-serif;font-size:.38rem;color:var(--teal);font-weight:700;}
+  .sa-stages{display:flex;gap:3px;margin-bottom:6px;}
+  .sa-stage{flex:1;background:#111;border:1px solid #1e1e1e;border-radius:3px;padding:4px;text-align:center;}
+  .sa-stage-num{font-family:'Bebas Neue',sans-serif;font-size:.8rem;line-height:1;}
+  .sa-stage-label{font-family:'Syne',sans-serif;font-size:.32rem;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);}
+  .sa-stage.hot .sa-stage-num{color:var(--teal);}
+  .sa-stage.warm .sa-stage-num{color:var(--accent2);}
+  .sa-stage.cold .sa-stage-num{color:var(--muted);}
+  .sa-apps{display:flex;flex-direction:column;gap:3px;}
+  .sa-app{background:#111;border:1px solid #1e1e1e;border-radius:3px;padding:5px 7px;display:flex;align-items:center;justify-content:space-between;}
+  .sa-app.priority{border-color:rgba(0,194,168,.3);background:rgba(0,194,168,.04);}
+  .sa-app-info{display:flex;flex-direction:column;gap:1px;}
+  .sa-app-company{height:6px;width:60px;background:#2a2a2a;border-radius:2px;}
+  .sa-app-role{height:5px;width:40px;background:#1e1e1e;border-radius:2px;}
+  .sa-app-right{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+  .sa-app-score{font-family:'Bebas Neue',sans-serif;font-size:.65rem;color:var(--teal);}
+  .sa-app-badge{font-family:'Syne',sans-serif;font-size:.3rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:1px 4px;border-radius:2px;}
+  .sa-app-badge.follow{background:rgba(255,228,77,.15);color:var(--accent2);}
+  .sa-app-badge.hot{background:rgba(0,194,168,.15);color:var(--teal);}
+  .sa-app-badge.new{background:rgba(255,77,28,.12);color:rgba(255,77,28,.8);}
+
+  /* ── SCREEN: AI Insight Detail ── */
+  .sc{background:#060d0c;}
+  .sc-nav{background:rgba(0,194,168,.06);border-bottom:1px solid rgba(0,194,168,.1);padding:8px 10px;display:flex;align-items:center;gap:6px;}
+  .sc-back{width:14px;height:14px;background:rgba(0,194,168,.1);border-radius:2px;}
+  .sc-title{font-family:'Bebas Neue',sans-serif;font-size:.72rem;color:#f5f2ee;}
+  .sc-body{padding:8px 10px;display:flex;flex-direction:column;gap:7px;}
+  .sc-score-ring{display:flex;align-items:center;justify-content:center;margin:4px 0;}
+  .sc-ring{width:64px;height:64px;border-radius:50%;border:3px solid rgba(0,194,168,.2);display:flex;align-items:center;justify-content:center;position:relative;background:rgba(0,194,168,.05);}
+  .sc-ring-fill{position:absolute;inset:0;border-radius:50%;border:3px solid var(--teal);clip-path:polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 65%, 0% 0%);}
+  .sc-ring-num{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--teal);}
+  .sc-ring-label{font-family:'Syne',sans-serif;font-size:.32rem;color:var(--muted);text-align:center;margin-top:2px;letter-spacing:1px;text-transform:uppercase;}
+  .sc-insight{background:rgba(0,194,168,.06);border:1px solid rgba(0,194,168,.15);border-radius:4px;padding:7px;}
+  .sc-insight-label{font-family:'Syne',sans-serif;font-size:.38rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:4px;}
+  .sc-insight-item{display:flex;align-items:flex-start;gap:4px;margin-bottom:3px;}
+  .sc-insight-bullet{color:var(--teal);font-size:.5rem;margin-top:1px;flex-shrink:0;}
+  .sc-insight-text{height:5px;flex:1;background:rgba(0,194,168,.15);border-radius:2px;margin-top:3px;}
+  .sc-insight-text.short{flex:.6;}
+  .sc-actions{display:flex;gap:4px;}
+  .sc-btn-primary{flex:1;height:24px;background:var(--teal);border-radius:3px;display:flex;align-items:center;justify-content:center;}
+  .sc-btn-primary span{font-family:'Syne',sans-serif;font-size:.38rem;font-weight:700;letter-spacing:1px;color:#060d0c;text-transform:uppercase;}
+  .sc-btn-sec{flex:1;height:24px;background:#111;border:1px solid #2a2a2a;border-radius:3px;display:flex;align-items:center;justify-content:center;}
+  .sc-btn-sec span{font-family:'Syne',sans-serif;font-size:.38rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+  .sc-timeline{background:#111;border:1px solid #1e1e1e;border-radius:4px;padding:6px 8px;}
+  .sc-tl-label{font-family:'Syne',sans-serif;font-size:.38rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+  .sc-tl-row{display:flex;align-items:center;gap:5px;margin-bottom:3px;}
+  .sc-tl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+  .sc-tl-dot.done{background:var(--teal);}
+  .sc-tl-dot.active{background:var(--accent2);}
+  .sc-tl-dot.pending{background:#2a2a2a;}
+  .sc-tl-bar{flex:1;height:4px;background:#1e1e1e;border-radius:2px;}
+  .sc-tl-bar.done{background:rgba(0,194,168,.3);}
+  .sc-tl-tag{font-family:'Syne',sans-serif;font-size:.32rem;letter-spacing:.5px;text-transform:uppercase;}
+  .sc-tl-tag.done{color:rgba(0,194,168,.6);}
+  .sc-tl-tag.active{color:var(--accent2);}
+  .sc-tl-tag.pending{color:#2a2a2a;}
+
+  /* ── SCREEN: Pipeline Kanban ── */
+  .sd{background:#060d0c;}
+  .sd-nav{background:rgba(0,194,168,.06);border-bottom:1px solid rgba(0,194,168,.1);padding:8px 10px;display:flex;align-items:center;justify-content:space-between;}
+  .sd-title{font-family:'Bebas Neue',sans-serif;font-size:.72rem;color:#f5f2ee;}
+  .sd-filter{font-family:'Syne',sans-serif;font-size:.35rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--teal);border:1px solid rgba(0,194,168,.2);padding:2px 6px;border-radius:2px;}
+  .sd-body{padding:8px;display:flex;gap:4px;overflow-x:auto;}
+  .sd-col{flex-shrink:0;width:80px;display:flex;flex-direction:column;gap:3px;}
+  .sd-col-head{font-family:'Syne',sans-serif;font-size:.38rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding-bottom:4px;border-bottom:2px solid;}
+  .sd-col-head.applied{color:var(--muted);border-color:var(--muted);}
+  .sd-col-head.screen{color:var(--accent2);border-color:var(--accent2);}
+  .sd-col-head.interview{color:var(--teal);border-color:var(--teal);}
+  .sd-col-head.offer{color:#88ff88;border-color:#88ff88;}
+  .sd-card{background:#111;border:1px solid #1e1e1e;border-radius:3px;padding:5px;}
+  .sd-card.priority{border-color:rgba(0,194,168,.3);}
+  .sd-card-co{height:5px;background:#2a2a2a;border-radius:2px;margin-bottom:2px;}
+  .sd-card-role{height:4px;width:70%;background:#1e1e1e;border-radius:2px;margin-bottom:3px;}
+  .sd-card-footer{display:flex;align-items:center;justify-content:space-between;}
+  .sd-card-days{font-family:'Syne',sans-serif;font-size:.3rem;color:var(--muted);}
+  .sd-card-score{font-family:'Bebas Neue',sans-serif;font-size:.5rem;color:var(--teal);}
+  .sd-card-score.warn{color:var(--accent2);}
+
+  /* JOURNEY MAP */
+  .jm-wrap{background:var(--mid);padding:36px;margin:40px 0;overflow-x:auto;}
+  .jm-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:24px;}
+  .jm-stages{display:flex;gap:0;}
+  .jm-stage{flex:1;min-width:120px;border-right:1px solid var(--border);padding:0 16px;}
+  .jm-stage:last-child{border-right:none;}
+  .jm-stage-label{font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+  .jm-action{font-size:.78rem;color:rgba(245,242,238,.5);margin-bottom:8px;line-height:1.5;}
+  .jm-pain{background:rgba(0,194,168,.07);border:1px solid rgba(0,194,168,.18);border-radius:3px;padding:6px 8px;margin-bottom:4px;font-size:.72rem;color:rgba(0,194,168,.8);line-height:1.4;}
+  .jm-neutral{background:#161616;border:1px solid #222;border-radius:3px;padding:6px 8px;font-size:.72rem;color:rgba(245,242,238,.25);line-height:1.4;}
+
+  /* EMOTION CURVE */
+  .emotion-wrap{background:var(--mid);padding:36px;margin:40px 0;}
+  .emotion-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
+  .emotion-chart{position:relative;height:120px;background:#111;border-radius:6px;overflow:hidden;padding:16px;}
+  .emotion-line{position:absolute;bottom:0;left:0;right:0;top:0;}
+  .emotion-svg{width:100%;height:100%;}
+
+  /* FLOW */
+  .flow-wrap{background:var(--mid);padding:36px;margin:40px 0;overflow-x:auto;}
+  .flow-title{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:28px;}
+  .flow-row{display:flex;align-items:center;}
+  .flow-node{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:110px;flex-shrink:0;}
+  .flow-bub{width:72px;height:72px;border-radius:50%;background:#111;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+  .flow-bub.on{border-color:var(--teal);background:rgba(0,194,168,.07);}
+  .flow-nl{font-family:'Syne',sans-serif;font-size:.56rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:center;}
+  .flow-nl.on{color:var(--teal);}
+  .flow-arr{flex:1;height:2px;background:var(--border);position:relative;min-width:28px;}
+  .flow-arr::after{content:'▶';position:absolute;right:-5px;top:50%;transform:translateY(-50%);font-size:.45rem;color:var(--border);}
+  .flow-arr.on{background:rgba(0,194,168,.4);}
+  .flow-arr.on::after{color:rgba(0,194,168,.6);}
+
+  /* NEXT / FOOTER */
+  .cs-next{border-top:1px solid var(--border);padding:60px 48px;display:flex;align-items:center;justify-content:space-between;background:var(--mid);}
+  .cs-next-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .cs-next-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);color:var(--white);}
+  .cs-next-link{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--accent);padding-bottom:2px;}
+  .cs-next-link::after{content:'→';transition:transform .2s;}
+  .cs-next-link:hover::after{transform:translateX(4px);}
+  footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+  .footer-copy{font-family:'Syne',sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--border);}
+  .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;color:var(--border);text-decoration:none;}
+  .footer-logo span{color:var(--accent);}
+
+  /* PLATFORMS CALLOUT */
+  .platforms-callout{background:var(--mid);border:1px solid rgba(0,194,168,.2);padding:36px;margin:40px 0;}
+  .platforms-callout-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;}
+  .platforms-callout-text{font-size:.95rem;color:rgba(245,242,238,.7);line-height:1.75;margin-bottom:24px;}
+  .platforms-callout-text strong{color:var(--white);}
+  .platforms-grid{display:flex;flex-wrap:wrap;gap:10px;}
+  .platform-chip{display:flex;align-items:center;gap:8px;background:#111;border:1px solid var(--border);padding:8px 16px;border-radius:4px;font-family:'Syne',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:1px;color:rgba(245,242,238,.7);transition:border-color .2s,color .2s;}
+  .platform-chip:hover{border-color:var(--teal);color:var(--white);}
+  .platform-icon{font-size:.9rem;}
+
+  /* AI SCORING CALLOUT */
+  .ai-callout{background:rgba(0,194,168,.04);border:1.5px solid rgba(0,194,168,.25);padding:36px;margin:40px 0;}
+  .ai-callout-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;}
+  .ai-callout-icon{font-size:2rem;line-height:1;}
+  .ai-callout-label{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--teal);margin-bottom:4px;}
+  .ai-callout-sub{font-size:.9rem;color:rgba(245,242,238,.5);}
+  .ai-callout-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:20px;}
+  .ai-callout-col{background:#111;padding:24px;}
+  .ai-col-head{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .ai-col-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .ai-col-list li{font-size:.88rem;color:rgba(245,242,238,.55);line-height:1.5;padding-left:14px;position:relative;}
+  .ai-col-list li::before{content:'▸';position:absolute;left:0;color:var(--teal);font-size:.7rem;}
+  .ai-callout-footer{font-size:.88rem;color:rgba(245,242,238,.5);line-height:1.7;border-top:1px solid rgba(0,194,168,.15);padding-top:16px;font-style:italic;}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity .65s ease,transform .65s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  /* Prototype demo styles */
+<style>
+      .jb-proto-wrap{background:var(--mid);padding:36px;margin:40px 0;}
+      .jb-proto-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:28px;}
+      .jb-proto-layout{display:flex;gap:48px;align-items:flex-start;flex-wrap:wrap;}
+
+      /* Phone */
+      .jb-phone{width:210px;flex-shrink:0;background:#080f0e;border:2px solid #1a2a28;border-radius:34px;padding:12px 10px 10px;box-shadow:0 32px 80px rgba(0,0,0,.8),inset 0 1px 0 rgba(0,194,168,.08);}
+      .jb-notch{width:56px;height:8px;background:#0d1a18;border-radius:4px;margin:0 auto 10px;}
+      .jb-screen{border-radius:22px;overflow:hidden;background:#060d0c;min-height:380px;position:relative;}
+      .jb-screen-inner{display:flex;flex-direction:column;min-height:380px;}
+
+      /* Top bar */
+      .jb-topbar{background:rgba(0,194,168,.06);border-bottom:1px solid rgba(0,194,168,.1);padding:9px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+      .jb-topbar-logo{font-family:'Bebas Neue',sans-serif;font-size:.8rem;color:var(--teal);letter-spacing:2px;}
+      .jb-topbar-title{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;color:var(--white);}
+      .jb-topbar-icon{width:18px;height:18px;background:rgba(0,194,168,.15);border-radius:4px;}
+      .jb-back-btn{font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;color:var(--teal);cursor:pointer;padding:2px 4px;width:40px;}
+
+      /* Screen 1 */
+      .jb-s1-body{padding:10px 12px;flex:1;display:flex;flex-direction:column;gap:10px;}
+      .jb-greeting{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--white);line-height:1;}
+      .jb-subgreet{font-family:'Syne',sans-serif;font-size:.5rem;color:rgba(0,194,168,.7);letter-spacing:1px;}
+      .jb-ai-strip{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.15);border-radius:5px;padding:8px;}
+      .jb-ai-strip-label{font-family:'Syne',sans-serif;font-size:.45rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+      .jb-ai-item{display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);position:relative;cursor:pointer;}
+      .jb-ai-item:last-child{border-bottom:none;}
+      .jb-ai-hot{background:rgba(0,194,168,.04);border-radius:3px;padding:5px 4px!important;}
+      .jb-ai-left{flex:1;}
+      .jb-ai-co{font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;color:var(--white);}
+      .jb-ai-role{font-family:'Syne',sans-serif;font-size:.48rem;color:var(--muted);}
+      .jb-ai-right{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+      .jb-ai-score{font-family:'Bebas Neue',sans-serif;font-size:.9rem;color:var(--teal);line-height:1;}
+      .jb-ai-badge{font-family:'Syne',sans-serif;font-size:.38rem;font-weight:700;letter-spacing:.5px;padding:1px 5px;border-radius:2px;}
+      .jb-badge-hot{background:rgba(0,194,168,.15);color:var(--teal);}
+      .jb-badge-warm{background:rgba(255,228,77,.12);color:var(--accent2);}
+      .jb-ai-tap-hint{position:absolute;right:2px;top:50%;transform:translateY(-50%);font-family:'Syne',sans-serif;font-size:.4rem;font-weight:700;color:var(--teal);opacity:.5;letter-spacing:1px;}
+      .jb-pipeline-row{display:flex;gap:4px;}
+      .jb-pipe-stat{flex:1;background:#0d0d0d;border:1px solid #1a1a1a;border-radius:4px;padding:5px 4px;text-align:center;}
+      .jb-pipe-num{font-family:'Bebas Neue',sans-serif;font-size:1rem;line-height:1;}
+      .jb-pipe-label{font-family:'Syne',sans-serif;font-size:.38rem;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);}
+      .jb-tabbar{display:flex;border-top:1px solid rgba(0,194,168,.08);margin-top:auto;}
+      .jb-tab{flex:1;padding:7px 2px;font-family:'Syne',sans-serif;font-size:.38rem;font-weight:700;text-align:center;color:#333;letter-spacing:.5px;}
+      .jb-tab-active{color:var(--teal)!important;border-top:2px solid var(--teal);}
+
+      /* Screen 2 */
+      .jb-s2-body{padding:10px 12px;flex:1;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+      .jb-co-header{display:flex;align-items:center;gap:8px;margin-bottom:2px;}
+      .jb-co-logo{width:30px;height:30px;background:#111;border:1px solid #222;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:.9rem;color:var(--teal);flex-shrink:0;}
+      .jb-co-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--white);line-height:1;}
+      .jb-co-role{font-family:'Syne',sans-serif;font-size:.48rem;color:var(--muted);}
+      .jb-co-score-badge{margin-left:auto;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--teal);background:rgba(0,194,168,.08);border:1px solid rgba(0,194,168,.2);border-radius:4px;padding:0 6px;line-height:1.4;}
+      .jb-score-section{background:#0d0d0d;border:1px solid #1a1a1a;border-radius:5px;padding:8px;}
+      .jb-score-label{font-family:'Syne',sans-serif;font-size:.45rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+      .jb-score-row{display:flex;align-items:center;gap:5px;margin-bottom:5px;}
+      .jb-score-item-label{font-family:'Syne',sans-serif;font-size:.45rem;color:rgba(245,242,238,.5);width:72px;flex-shrink:0;line-height:1.3;}
+      .jb-score-bar-wrap{flex:1;height:4px;background:#1a1a1a;border-radius:2px;overflow:hidden;}
+      .jb-score-bar{height:100%;border-radius:2px;}
+      .jb-score-pct{font-family:'Syne',sans-serif;font-size:.45rem;font-weight:700;color:var(--teal);width:28px;text-align:right;flex-shrink:0;}
+      .jb-reason-card{background:rgba(0,194,168,.04);border:1px solid rgba(0,194,168,.15);border-radius:5px;padding:8px;}
+      .jb-reason-label{font-family:'Syne',sans-serif;font-size:.45rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+      .jb-reason-item{font-family:'DM Sans',sans-serif;font-size:.52rem;color:rgba(245,242,238,.6);line-height:1.6;margin-bottom:3px;}
+      .jb-timeline{background:#0d0d0d;border:1px solid #1a1a1a;border-radius:5px;padding:8px;}
+      .jb-tl-label{font-family:'Syne',sans-serif;font-size:.45rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+      .jb-tl-row{display:flex;align-items:center;gap:5px;margin-bottom:4px;}
+      .jb-tl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+      .jb-tl-done{background:var(--teal);}
+      .jb-tl-active{background:var(--accent2);box-shadow:0 0 6px var(--accent2);}
+      .jb-tl-pending{background:#1e1e1e;border:1px solid #2a2a2a;}
+      .jb-tl-line{flex:1;height:1px;background:#1a1a1a;}
+      .jb-tl-tag{font-family:'Syne',sans-serif;font-size:.42rem;color:var(--muted);white-space:nowrap;}
+      .jb-cta-btn{background:var(--teal);color:#060d0c;font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:10px;border-radius:4px;cursor:pointer;margin-top:4px;transition:opacity .2s;}
+      .jb-cta-btn:hover{opacity:.85;}
+
+      /* Screen 3 */
+      .jb-s3-body{padding:10px 12px;flex:1;display:flex;flex-direction:column;gap:8px;}
+      .jb-compose-label{font-family:'Syne',sans-serif;font-size:.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);}
+      .jb-email-card{background:#0d0d0d;border:1px solid rgba(0,194,168,.15);border-radius:5px;padding:8px;flex:1;}
+      .jb-email-row{display:flex;gap:6px;margin-bottom:5px;}
+      .jb-email-field{font-family:'Syne',sans-serif;font-size:.5rem;font-weight:700;color:var(--muted);width:38px;flex-shrink:0;}
+      .jb-email-val{font-family:'DM Sans',sans-serif;font-size:.5rem;color:rgba(245,242,238,.7);}
+      .jb-email-divider{height:1px;background:#1a1a1a;margin:6px 0;}
+      .jb-email-body{font-family:'DM Sans',sans-serif;font-size:.5rem;color:rgba(245,242,238,.6);line-height:1.7;}
+      .jb-tone-row{display:flex;align-items:center;gap:5px;}
+      .jb-tone-label{font-family:'Syne',sans-serif;font-size:.5rem;font-weight:700;color:var(--muted);}
+      .jb-tone-chip{font-family:'Syne',sans-serif;font-size:.48rem;font-weight:700;padding:3px 8px;border-radius:20px;border:1px solid #2a2a2a;color:#555;cursor:pointer;}
+      .jb-tone-active{border-color:var(--teal)!important;color:var(--teal)!important;background:rgba(0,194,168,.06);}
+      .jb-send-btn{background:var(--teal);color:#060d0c;font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:11px;border-radius:4px;cursor:pointer;transition:background .2s;}
+      .jb-snooze-btn{font-family:'Syne',sans-serif;font-size:.5rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-align:center;padding:6px;color:#333;cursor:pointer;}
+      .jb-success{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:8px;padding:20px;}
+      .jb-success-icon{width:40px;height:40px;background:rgba(0,194,168,.15);border:2px solid var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--teal);}
+      .jb-success-title{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--white);}
+      .jb-success-sub{font-family:'DM Sans',sans-serif;font-size:.52rem;color:var(--muted);text-align:center;line-height:1.6;}
+
+      /* Step annotations */
+      .jb-steps{flex:1;min-width:220px;display:flex;flex-direction:column;gap:24px;padding-top:4px;}
+      .jb-step{display:flex;gap:14px;align-items:flex-start;opacity:.3;transition:opacity .3s,background .3s;padding:12px;border-radius:6px;border:1px solid transparent;}
+      .jb-step:hover{opacity:.75;border-color:#1e1e1e;background:rgba(255,255,255,.02);}
+      .jb-step.active{opacity:1;border-color:rgba(0,194,168,.2);background:rgba(0,194,168,.03);}
+      .jb-step-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#1a1a1a;line-height:1;flex-shrink:0;transition:color .3s;min-width:32px;}
+      .jb-step.active .jb-step-num{color:var(--teal);}
+      .jb-step:hover .jb-step-num{color:#2a2a2a;}
+      .jb-step-title{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:4px;}
+      .jb-step-desc{font-size:.82rem;color:var(--muted);line-height:1.65;}
+
+  @media(max-width:768px){nav{padding:20px 24px;}.cs-hero{padding:120px 24px 60px;}.cs-body{padding:60px 24px;}.cs-cards,.cs-results,.research-grid{grid-template-columns:1fr;}.cs-meta{gap:24px;}.phone-row{justify-content:center;}.jm-stages{flex-direction:column;}.jm-stage{border-right:none;border-bottom:1px solid var(--border);padding:16px 0;}.cs-next{flex-direction:column;gap:24px;align-items:flex-start;padding:40px 24px;}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">MIA<span>.</span></a>
+  <a href="index.html#case-studies" class="nav-back">Back to Work</a>
+</nav>
+
+<div class="cs-hero">
+  <div class="cs-hero-bg"></div>
+  <div class="orb1"></div><div class="orb2"></div>
+  <div class="cs-hero-content">
+    <div class="cs-eyebrow">Case Study 03 · Productivity App · 2025</div>
+    <h1 class="cs-title">Jobbrief<br><span>AI Job Tracker</span></h1>
+    <p class="cs-summary">Designing a first-of-its-kind job search hub that connects all your job platforms in one place, then uses AI to score, prioritize, and brief you on exactly where to focus your energy.</p>
+    <div class="cs-meta">
+      <div><div class="cs-meta-label">Role</div><div class="cs-meta-value">UX Designer (Concept)</div></div>
+      <div><div class="cs-meta-label">Timeline</div><div class="cs-meta-value">8 Weeks</div></div>
+      <div><div class="cs-meta-label">Platform</div><div class="cs-meta-value">iOS Mobile App</div></div>
+      <div><div class="cs-meta-label">Tools</div><div class="cs-meta-value">Figma · Sketch · Notion</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="cs-body">
+
+  <!-- 01 PROBLEM -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">01: Problem & Goals</div>
+    <h2 class="cs-section-title">Job Hunting Is<br>Chaos by Default</h2>
+    <div class="cs-divider"></div>
+    <p class="cs-text">Job searching is one of the most high-stakes, emotionally draining activities a person can go through, yet the tools most people use are a patchwork of Google Sheets, browser bookmarks, and frantic calendar reminders. <strong>There's no single space that holds it all together.</strong></p>
+    <p class="cs-text">Existing job tracker apps either feel like stripped-down CRMs or glorified to-do lists. None of them understand the emotional arc of a job search or help users make smarter decisions about where to invest their time. Jobbrief was designed to fix that.</p>
+    <div class="cs-cards">
+      <div class="cs-card"><div class="cs-card-num">73%</div><div class="cs-card-label">Use Spreadsheets</div><div class="cs-card-desc">Most active job seekers track applications in Google Sheets or Excel, tools never designed for this purpose.</div></div>
+      <div class="cs-card"><div class="cs-card-num">60%</div><div class="cs-card-label">Miss Follow-Ups</div><div class="cs-card-desc">Over half of job seekers forget to follow up after interviews, often the difference between an offer and silence.</div></div>
+      <div class="cs-card"><div class="cs-card-num">3.2×</div><div class="cs-card-label">Apps Per Search</div><div class="cs-card-desc">The average active job seeker juggles 3+ tools simultaneously: email, job boards, notes apps, and calendars.</div></div>
+    </div>
+
+    <!-- 📸 SWAP: Screenshot of messy job tracking spreadsheet -->
+    <div class="img-placeholder iph-swap">
+      <div class="iph-icon">📊</div>
+      <div class="iph-label">Replace with: The Problem: Spreadsheet Chaos</div>
+      <div class="iph-hint">A screenshot of a cluttered Google Sheet being used to track job applications: columns everywhere, inconsistent statuses, color-coded chaos</div>
+      <div class="iph-filename">→ save as: jobbrief-problem-spreadsheet.jpg</div>
+    </div>
+
+    <!-- GOOGLE SHEETS CHAOS VISUALIZATION -->
+
+
+    <div class="cs-tags">
+      <span class="cs-tag">Productivity</span><span class="cs-tag">AI UX</span><span class="cs-tag">Mobile Design</span><span class="cs-tag">Job Search</span>
+    </div>
+  </div>
+
+  <!-- 02 RESEARCH -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">02: Research & Discovery</div>
+    <h2 class="cs-section-title">The Hidden Emotional<br>Side of Job Hunting</h2>
+    <div class="cs-divider"></div>
+    <p class="cs-text">I conducted <strong>43 interviews</strong> with active and recently-finished job seekers across industries and career stages. What emerged wasn't just a tool problem; it was an <strong>emotional problem dressed as an organizational one.</strong></p>
+
+    <!-- JOURNEY MAP -->
+    <div class="jm-wrap reveal">
+      <div class="jm-label">Job Seeker Journey: Where Things Break Down</div>
+      <div class="jm-stages">
+        <div class="jm-stage">
+          <div class="jm-stage-label">Discover</div>
+          <div class="jm-action">Browse job boards, save listings across multiple tabs</div>
+          <div class="jm-neutral">Manageable, excitement is high</div>
+        </div>
+        <div class="jm-stage">
+          <div class="jm-stage-label">Apply</div>
+          <div class="jm-action">Submit applications, log them somewhere manually</div>
+          <div class="jm-pain">💢 Already losing track after 5+ apps</div>
+        </div>
+        <div class="jm-stage">
+          <div class="jm-stage-label">Wait</div>
+          <div class="jm-action">Check email obsessively, unsure what to do next</div>
+          <div class="jm-pain">💢 Anxiety peaks; no signal on where to focus</div>
+        </div>
+        <div class="jm-stage">
+          <div class="jm-stage-label">Follow Up</div>
+          <div class="jm-action">Try to remember who to follow up with and when</div>
+          <div class="jm-pain">💢 Most people forget or feel too awkward to do it</div>
+        </div>
+        <div class="jm-stage">
+          <div class="jm-stage-label">Interview</div>
+          <div class="jm-action">Scramble to remember details about each company</div>
+          <div class="jm-pain">💢 Notes scattered across 4 different apps</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMOTION CURVE -->
+    <div class="emotion-wrap reveal">
+      <div class="emotion-label">Emotional Energy Curve: Typical 6-Week Job Search</div>
+      <div class="emotion-chart">
+        <svg class="emotion-svg" viewBox="0 0 800 100" preserveAspectRatio="none">
+          <!-- Grid lines -->
+          <line x1="0" y1="50" x2="800" y2="50" stroke="#1e1e1e" stroke-width="1"/>
+          <line x1="0" y1="25" x2="800" y2="25" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="0" y1="75" x2="800" y2="75" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="4,4"/>
+          <!-- Emotion curve path -->
+          <path d="M 0,65 C 50,55 100,20 160,18 S 260,45 320,60 S 420,85 480,80 S 580,50 640,35 S 720,20 800,25"
+            fill="none" stroke="rgba(0,194,168,0.6)" stroke-width="2.5"/>
+          <!-- Fill under curve -->
+          <path d="M 0,65 C 50,55 100,20 160,18 S 260,45 320,60 S 420,85 480,80 S 580,50 640,35 S 720,20 800,25 L 800,100 L 0,100 Z"
+            fill="rgba(0,194,168,0.05)"/>
+          <!-- Peak point -->
+          <circle cx="160" cy="18" r="4" fill="rgba(0,194,168,0.8)"/>
+          <!-- Trough point -->
+          <circle cx="460" cy="82" r="4" fill="rgba(255,77,28,0.8)"/>
+          <!-- Labels -->
+          <text x="140" y="12" fill="rgba(0,194,168,0.7)" font-size="9" font-family="sans-serif">Peak excitement</text>
+          <text x="400" y="98" fill="rgba(255,77,28,0.7)" font-size="9" font-family="sans-serif">Energy low / rejection spiral</text>
+          <!-- Week markers -->
+          <text x="0" y="95" fill="#333" font-size="8" font-family="sans-serif">Wk 1</text>
+          <text x="155" y="95" fill="#333" font-size="8" font-family="sans-serif">Wk 2</text>
+          <text x="310" y="95" fill="#333" font-size="8" font-family="sans-serif">Wk 3</text>
+          <text x="465" y="95" fill="#333" font-size="8" font-family="sans-serif">Wk 4</text>
+          <text x="620" y="95" fill="#333" font-size="8" font-family="sans-serif">Wk 5</text>
+          <text x="760" y="95" fill="#333" font-size="8" font-family="sans-serif">Wk 6</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 📸 SWAP: Research affinity map -->
+    <div class="img-placeholder iph-medium">
+      <div class="iph-icon">🗂️</div>
+      <div class="iph-label">Replace with: Research Affinity Map</div>
+      <div class="iph-hint">Photo or screenshot of your FigJam or Miro board, with user interview themes clustered into insight groups</div>
+      <div class="iph-filename">→ save as: jobbrief-affinity-map.jpg</div>
+    </div>
+
+    <div class="research-grid reveal">
+      <div class="rc"><div class="rc-label">Finding 01</div><div class="rc-title">Context Collapse</div><div class="rc-body">Users apply to 20+ roles but can't remember the details of each company by the time an interview comes around. Notes are everywhere and nowhere.</div></div>
+      <div class="rc"><div class="rc-label">Finding 02</div><div class="rc-title">Follow-Up Paralysis</div><div class="rc-body">Even when users intended to follow up, they didn't know when, what to say, or if it would seem desperate. No guidance, no nudges.</div></div>
+      <div class="rc"><div class="rc-label">Finding 03</div><div class="rc-title">Energy Misallocation</div><div class="rc-body">Users spent equal energy on every application regardless of signal. Hot leads got the same attention as cold rejections.</div></div>
+      <div class="rc"><div class="rc-label">Finding 04</div><div class="rc-title">Emotional Blindness</div><div class="rc-body">No existing tool acknowledged the emotional toll of the process. Users felt like they were failing, even when they were doing well statistically.</div></div>
+    </div>
+
+    <div class="cs-quote">
+      <p>"I had a spreadsheet with 40 rows and I genuinely couldn't tell you which ones were worth my time anymore. I just felt paralyzed."</p>
+      <cite>— Interview participant, 27, UX designer actively job searching</cite>
+    </div>
+  </div>
+
+  <!-- 03 PROCESS -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">03: Process & Wireframes</div>
+    <h2 class="cs-section-title">From Spreadsheet<br>to Smart Pipeline</h2>
+    <div class="cs-divider"></div>
+    <p class="cs-text">The core design challenge was twofold: make organization effortless, and make prioritization intelligent. The AI insight layer wasn't just a feature; it was the <strong>central organizing principle</strong> of the entire app.</p>
+
+    <!-- 📸 SWAP: Early sketches -->
+    <div class="img-placeholder iph-medium">
+      <div class="iph-icon">✏️</div>
+      <div class="iph-label">Replace with: Early Sketches & Concepts</div>
+      <div class="iph-hint">Hand-drawn wireframes or lo-fi Figma explorations of the dashboard, pipeline view, and AI insight card concepts</div>
+      <div class="iph-filename">→ save as: jobbrief-sketches.jpg</div>
+    </div>
+
+    <!-- REDESIGNED FLOW -->
+    <div class="flow-wrap reveal">
+      <div class="flow-title">App Flow: Add Application → Get AI Insights → Take Action</div>
+      <div class="flow-row">
+        <div class="flow-node"><div class="flow-bub on">➕</div><div class="flow-nl on">Add<br>Application</div></div>
+        <div class="flow-arr on"></div>
+        <div class="flow-node"><div class="flow-bub on">🧠</div><div class="flow-nl on">AI Scores<br>& Ranks</div></div>
+        <div class="flow-arr on"></div>
+        <div class="flow-node"><div class="flow-bub on">📋</div><div class="flow-nl on">Pipeline<br>View</div></div>
+        <div class="flow-arr on"></div>
+        <div class="flow-node"><div class="flow-bub on">🔔</div><div class="flow-nl on">Smart<br>Nudges</div></div>
+        <div class="flow-arr"></div>
+        <div class="flow-node"><div class="flow-bub">🎉</div><div class="flow-nl">Land the<br>Offer</div></div>
+      </div>
+    </div>
+
+    <!-- PHONE MOCKUPS -->
+    <div class="phone-showcase reveal">
+      <div class="phone-showcase-label">Wireframes: Before & After, Spreadsheet → Jobbrief</div>
+      <div class="phone-row">
+
+        <!-- BEFORE -->
+        <div class="phone-wrap">
+          <div class="phone-tag" style="color:var(--muted);"><span style="width:6px;height:6px;border-radius:50%;background:var(--muted);display:inline-block;"></span>Before: Spreadsheet</div>
+          <div class="pf">
+            <div class="pf-notch"></div>
+            <div class="pf-screen sb">
+              <div class="sb-nav"><div class="sb-title">Job Applications</div><div class="sb-icon"></div></div>
+              <div class="sb-body">
+                <div class="sb-row-head"><div class="sb-col-h wide"></div><div class="sb-col-h"></div><div class="sb-col-h"></div></div>
+                <div class="sb-job-row">
+                  <div class="sb-cell wide"><div class="sb-cell-dot" style="background:#555;"></div><div class="sb-cell-text"></div></div>
+                  <div class="sb-cell"><div class="sb-cell-text"></div></div>
+                  <div class="sb-cell"><div class="sb-cell-text"></div></div>
+                </div>
+                <div class="sb-job-row">
+                  <div class="sb-cell wide"><div class="sb-cell-dot" style="background:#555;"></div><div class="sb-cell-text"></div></div>
+                  <div class="sb-cell"><div class="sb-cell-text"></div></div>
+                  <div class="sb-cell"><div class="sb-cell-text"></div></div>
+                </div>
+                <div class="sb-job-row">
+                  <div class="sb-cell wide"><div class="sb-cell-dot" style="background:#333;"></div><div class="sb-cell-text"></div></div>
+                  <div class="sb-cell"><div class="sb-cell-text"></div></div>
+                  <div class="sb-cell"><div class="sb-cell-text"></div></div>
+                </div>
+                <div class="sb-job-row">
+                  <div class="sb-cell wide"><div class="sb-cell-dot" style="background:#444;"></div><div class="sb-cell-text"></div></div>
+                  <div class="sb-cell"><div class="sb-cell-text"></div></div>
+                  <div class="sb-cell"><div class="sb-cell-text"></div></div>
+                </div>
+                <div class="sb-note">
+                  <div class="sb-note-label">Notes</div>
+                  <div class="sb-note-lines"><div class="sb-note-line"></div><div class="sb-note-line short"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-cap">No priority · No signal<br>Just rows</div>
+        </div>
+
+        <!-- AFTER: Dashboard -->
+        <div class="phone-wrap">
+          <div class="phone-tag" style="color:var(--teal);"><span style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block;"></span>After: Dashboard</div>
+          <div class="pf">
+            <div class="pf-notch"></div>
+            <div class="pf-screen sa">
+              <div class="sa-nav"><div class="sa-logo">JOBBRIEF</div><div class="sa-ico"></div></div>
+              <div class="sa-body">
+                <div class="sa-greeting">Good morning</div>
+                <div class="sa-name">3 Actions Today</div>
+                <div class="sa-ai-card">
+                  <div class="sa-ai-label">⚡ AI Priority</div>
+                  <div class="sa-ai-item"><div class="sa-ai-dot"></div><div class="sa-ai-text"></div><div class="sa-ai-pct">94</div></div>
+                  <div class="sa-ai-item"><div class="sa-ai-dot" style="opacity:.6;"></div><div class="sa-ai-text" style="opacity:.6;"></div><div class="sa-ai-pct" style="opacity:.6;">71</div></div>
+                  <div class="sa-ai-item"><div class="sa-ai-dot" style="opacity:.4;"></div><div class="sa-ai-text" style="opacity:.4;"></div><div class="sa-ai-pct" style="opacity:.4;">48</div></div>
+                </div>
+                <div class="sa-stages">
+                  <div class="sa-stage"><div class="sa-stage-num" style="color:var(--muted);">12</div><div class="sa-stage-label">Applied</div></div>
+                  <div class="sa-stage"><div class="sa-stage-num" style="color:var(--accent2);">4</div><div class="sa-stage-label">Screen</div></div>
+                  <div class="sa-stage hot"><div class="sa-stage-num">2</div><div class="sa-stage-label">Interview</div></div>
+                </div>
+                <div class="sa-apps">
+                  <div class="sa-app priority">
+                    <div class="sa-app-info"><div class="sa-app-company"></div><div class="sa-app-role"></div></div>
+                    <div class="sa-app-right"><div class="sa-app-score">94</div><div class="sa-app-badge hot">Follow up</div></div>
+                  </div>
+                  <div class="sa-app">
+                    <div class="sa-app-info"><div class="sa-app-company"></div><div class="sa-app-role"></div></div>
+                    <div class="sa-app-right"><div class="sa-app-score" style="color:var(--accent2);">71</div><div class="sa-app-badge follow">Prep interview</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-cap">AI-ranked · Clear actions<br>Today's priorities</div>
+        </div>
+
+        <!-- AFTER: AI Detail -->
+        <div class="phone-wrap">
+          <div class="phone-tag" style="color:var(--teal);"><span style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block;"></span>After: AI Insight</div>
+          <div class="pf">
+            <div class="pf-notch"></div>
+            <div class="pf-screen sc">
+              <div class="sc-nav"><div class="sc-back"></div><div class="sc-title">AI Insight</div></div>
+              <div class="sc-body">
+                <div class="sc-score-ring">
+                  <div style="display:flex;flex-direction:column;align-items:center;">
+                    <div class="sc-ring">
+                      <div class="sc-ring-fill"></div>
+                      <div class="sc-ring-num">94</div>
+                    </div>
+                    <div class="sc-ring-label">Priority Score</div>
+                  </div>
+                </div>
+                <div class="sc-insight">
+                  <div class="sc-insight-label">Why This Is Hot</div>
+                  <div class="sc-insight-item"><div class="sc-insight-bullet">▸</div><div class="sc-insight-text"></div></div>
+                  <div class="sc-insight-item"><div class="sc-insight-bullet">▸</div><div class="sc-insight-text short"></div></div>
+                  <div class="sc-insight-item"><div class="sc-insight-bullet">▸</div><div class="sc-insight-text"></div></div>
+                </div>
+                <div class="sc-timeline">
+                  <div class="sc-tl-label">Application Timeline</div>
+                  <div class="sc-tl-row"><div class="sc-tl-dot done"></div><div class="sc-tl-bar done"></div><div class="sc-tl-tag done">Applied</div></div>
+                  <div class="sc-tl-row"><div class="sc-tl-dot done"></div><div class="sc-tl-bar done"></div><div class="sc-tl-tag done">Email opened</div></div>
+                  <div class="sc-tl-row"><div class="sc-tl-dot active"></div><div class="sc-tl-bar"></div><div class="sc-tl-tag active">Follow up now</div></div>
+                  <div class="sc-tl-row"><div class="sc-tl-dot pending"></div><div class="sc-tl-bar"></div><div class="sc-tl-tag pending">Interview</div></div>
+                </div>
+                <div class="sc-actions">
+                  <div class="sc-btn-primary"><span>Send Follow-Up</span></div>
+                  <div class="sc-btn-sec"><span>Snooze</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-cap">AI reasoning · Timeline<br>One-tap action</div>
+        </div>
+
+        <!-- AFTER: Kanban -->
+        <div class="phone-wrap">
+          <div class="phone-tag" style="color:var(--teal);"><span style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block;"></span>After: Pipeline</div>
+          <div class="pf">
+            <div class="pf-notch"></div>
+            <div class="pf-screen sd">
+              <div class="sd-nav"><div class="sd-title">Pipeline</div><div class="sd-filter">AI Sort</div></div>
+              <div class="sd-body">
+                <div class="sd-col">
+                  <div class="sd-col-head applied">Applied</div>
+                  <div class="sd-card"><div class="sd-card-co"></div><div class="sd-card-role"></div><div class="sd-card-footer"><div class="sd-card-days">8d ago</div><div class="sd-card-score warn">48</div></div></div>
+                  <div class="sd-card"><div class="sd-card-co"></div><div class="sd-card-role"></div><div class="sd-card-footer"><div class="sd-card-days">3d ago</div><div class="sd-card-score warn">61</div></div></div>
+                  <div class="sd-card"><div class="sd-card-co"></div><div class="sd-card-role"></div><div class="sd-card-footer"><div class="sd-card-days">1d ago</div><div class="sd-card-score">77</div></div></div>
+                </div>
+                <div class="sd-col">
+                  <div class="sd-col-head screen">Screen</div>
+                  <div class="sd-card priority"><div class="sd-card-co"></div><div class="sd-card-role"></div><div class="sd-card-footer"><div class="sd-card-days">Today</div><div class="sd-card-score">94</div></div></div>
+                  <div class="sd-card"><div class="sd-card-co"></div><div class="sd-card-role"></div><div class="sd-card-footer"><div class="sd-card-days">2d ago</div><div class="sd-card-score">71</div></div></div>
+                </div>
+                <div class="sd-col">
+                  <div class="sd-col-head interview">Interview</div>
+                  <div class="sd-card priority"><div class="sd-card-co"></div><div class="sd-card-role"></div><div class="sd-card-footer"><div class="sd-card-days">Tomorrow</div><div class="sd-card-score">89</div></div></div>
+                </div>
+                <div class="sd-col">
+                  <div class="sd-col-head offer">Offer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-cap">Kanban pipeline · AI scores<br>on every card</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 📸 SWAP: Mid-fi wireframes -->
+    <div class="img-placeholder iph-wide">
+      <div class="iph-icon">🖥️</div>
+      <div class="iph-label">Replace with: Mid-Fidelity Wireframes</div>
+      <div class="iph-hint">Figma wireframe export: dashboard, AI insight detail, pipeline kanban, and follow-up nudge screens side by side</div>
+      <div class="iph-filename">→ save as: jobbrief-wireframes.png</div>
+    </div>
+
+
+    <!-- CONNECTED PLATFORMS CALLOUT -->
+    <div class="platforms-callout reveal">
+      <div class="platforms-callout-label">⚡ Key Feature: Platform Integration</div>
+      <p class="platforms-callout-text">One of Jobbrief's core differentiators is that <strong>you never have to manually enter a job posting.</strong> Users connect their existing job search accounts and Jobbrief pulls everything in automatically, keeping your pipeline in sync across every platform you already use.</p>
+      <div class="platforms-grid">
+        <div class="platform-chip"><span class="platform-icon">💼</span><span>LinkedIn</span></div>
+        <div class="platform-chip"><span class="platform-icon">🔍</span><span>Indeed</span></div>
+        <div class="platform-chip"><span class="platform-icon">🏛️</span><span>CareerOneStop</span></div>
+        <div class="platform-chip"><span class="platform-icon">🤝</span><span>Handshake</span></div>
+        <div class="platform-chip"><span class="platform-icon">📋</span><span>Glassdoor</span></div>
+        <div class="platform-chip"><span class="platform-icon">💻</span><span>Dice</span></div>
+        <div class="platform-chip"><span class="platform-icon">🏢</span><span>ZipRecruiter</span></div>
+        <div class="platform-chip"><span class="platform-icon">📎</span><span>+ Any Job Board</span></div>
+      </div>
+    </div>
+
+    <!-- AI SCORING CALLOUT -->
+    <div class="ai-callout reveal">
+      <div class="ai-callout-header">
+        <div class="ai-callout-icon">🧠</div>
+        <div>
+          <div class="ai-callout-label">How the AI Score Works</div>
+          <div class="ai-callout-sub">Two data sources. One clear number.</div>
+        </div>
+      </div>
+      <div class="ai-callout-grid">
+        <div class="ai-callout-col">
+          <div class="ai-col-head"><span>📁</span> Your Data</div>
+          <ul class="ai-col-list">
+            <li>Resume & cover letter you upload</li>
+            <li>LinkedIn profile (if connected)</li>
+            <li>Application history & response rates</li>
+            <li>Interview notes & follow-up records</li>
+            <li>Job preferences you set in onboarding</li>
+          </ul>
+        </div>
+        <div class="ai-callout-col">
+          <div class="ai-col-head"><span>📡</span> Market Signals</div>
+          <ul class="ai-col-list">
+            <li>Demand for the specific role &amp; title</li>
+            <li>Salary benchmarks for your location</li>
+            <li>Company's current hiring velocity</li>
+            <li>Competition level in your market</li>
+            <li>Industry hiring trends &amp; seasonal patterns</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ai-callout-footer">
+        The score updates in real time as new signals come in: if a company starts interviewing more candidates or a role goes cold, your score reflects it immediately.
+      </div>
+    </div>
+
+    <div class="cs-process">
+      <div class="cs-step"><div class="cs-step-num">01</div><div><div class="cs-step-title">Smart Dashboard</div><div class="cs-step-desc">The home screen surfaces only what matters today: AI-ranked priority applications, follow-up nudges, and a quick pipeline summary. No scrolling through 40 rows.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">02</div><div><div class="cs-step-title">AI Priority Score</div><div class="cs-step-desc">Each application receives a 0–100 score based on two inputs: <strong>your own data</strong> (resume, cover letter, linked profiles, and application history you upload or connect) and <strong>live market signals</strong> (demand for the specific role, salary benchmarks, company hiring velocity, and competition level in your area). The AI explains its reasoning in plain language, not a black box.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">03</div><div><div class="cs-step-title">Follow-Up Nudges</div><div class="cs-step-desc">Contextual reminders that tell you when and why to follow up, drafted and ready to send in one tap. No more guessing or anxiety about reaching out.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">04</div><div><div class="cs-step-title">Pipeline Kanban</div><div class="cs-step-desc">A visual board that moves with you: Applied, Screening, Interview, Offer. Cards show AI scores and time-sensitive flags, so the most urgent items are always visible.</div></div></div>
+    </div>
+  </div>
+
+  <!-- 04 FINAL DESIGN -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">04: Final Design</div>
+    <h2 class="cs-section-title">Your Job Search,<br>Finally Organized</h2>
+    <div class="cs-divider"></div>
+    <p class="cs-text">The final design gave job seekers something no existing tool offered: <strong>a clear answer to "what should I do right now?"</strong>, backed by AI reasoning they could actually understand and trust.</p>
+
+    <!-- 📸 SWAP: Final hi-fi screens -->
+    <div class="img-placeholder iph-wide">
+      <div class="iph-icon">🎨</div>
+      <div class="iph-label">Replace with: Final Hi-Fidelity Screens</div>
+      <div class="iph-hint">Polished Figma finals: dashboard, AI insight card, pipeline kanban, and follow-up nudge in a spread on a dark background</div>
+      <div class="iph-filename">→ save as: jobbrief-final-screens.png</div>
+    </div>
+
+    <!-- PROTOTYPE DEMO -->
+    <div class="jb-proto-wrap reveal">
+      <div class="jb-proto-label">Prototype Demo — Dashboard → AI Insight → Follow-Up</div>
+
+      <div class="jb-proto-layout">
+
+        <!-- PHONE -->
+        <div class="jb-phone">
+          <div class="jb-notch"></div>
+          <div class="jb-screen">
+
+            <!-- SCREEN 1: Dashboard -->
+            <div class="jb-screen-inner" id="jbs1">
+              <div class="jb-topbar">
+                <div class="jb-topbar-logo">JOBBRIEF</div>
+                <div class="jb-topbar-icon"></div>
+              </div>
+              <div class="jb-s1-body">
+                <div class="jb-greeting">Good morning, Mia.</div>
+                <div class="jb-subgreet">3 actions need your attention today.</div>
+
+                <!-- AI priority card -->
+                <div class="jb-ai-strip">
+                  <div class="jb-ai-strip-label">⚡ AI Priority Queue</div>
+                  <!-- Item 1 — clickable -->
+                  <div class="jb-ai-item jb-ai-hot" id="jbAiItem1">
+                    <div class="jb-ai-left">
+                      <div class="jb-ai-co">Vercel</div>
+                      <div class="jb-ai-role">Product Design Lead</div>
+                    </div>
+                    <div class="jb-ai-right">
+                      <div class="jb-ai-score">94</div>
+                      <div class="jb-ai-badge jb-badge-hot">Follow up</div>
+                    </div>
+                    <div class="jb-ai-tap-hint">TAP →</div>
+                  </div>
+                  <div class="jb-ai-item">
+                    <div class="jb-ai-left">
+                      <div class="jb-ai-co">Notion</div>
+                      <div class="jb-ai-role">UX Designer</div>
+                    </div>
+                    <div class="jb-ai-right">
+                      <div class="jb-ai-score" style="color:var(--accent2);">71</div>
+                      <div class="jb-ai-badge jb-badge-warm">Prep interview</div>
+                    </div>
+                  </div>
+                  <div class="jb-ai-item">
+                    <div class="jb-ai-left">
+                      <div class="jb-ai-co">Figma</div>
+                      <div class="jb-ai-role">Designer, Growth</div>
+                    </div>
+                    <div class="jb-ai-right">
+                      <div class="jb-ai-score" style="color:#555;">48</div>
+                      <div class="jb-ai-badge" style="background:#1a1a1a;color:#555;">Low signal</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Pipeline summary -->
+                <div class="jb-pipeline-row">
+                  <div class="jb-pipe-stat"><div class="jb-pipe-num" style="color:#555;">12</div><div class="jb-pipe-label">Applied</div></div>
+                  <div class="jb-pipe-stat"><div class="jb-pipe-num" style="color:var(--accent2);">4</div><div class="jb-pipe-label">Screening</div></div>
+                  <div class="jb-pipe-stat"><div class="jb-pipe-num" style="color:var(--teal);">2</div><div class="jb-pipe-label">Interview</div></div>
+                  <div class="jb-pipe-stat"><div class="jb-pipe-num" style="color:#88ff88;">0</div><div class="jb-pipe-label">Offers</div></div>
+                </div>
+              </div>
+              <div class="jb-tabbar">
+                <div class="jb-tab jb-tab-active">⬚ Home</div>
+                <div class="jb-tab">≡ Pipeline</div>
+                <div class="jb-tab">🔔 Alerts</div>
+                <div class="jb-tab">⚙ Settings</div>
+              </div>
+            </div>
+
+            <!-- SCREEN 2: AI Insight -->
+            <div class="jb-screen-inner" id="jbs2" style="display:none;">
+              <div class="jb-topbar">
+                <div class="jb-back-btn" id="jbBack1">← Back</div>
+                <div class="jb-topbar-title">AI Insight</div>
+                <div style="width:40px;"></div>
+              </div>
+              <div class="jb-s2-body">
+                <!-- Company header -->
+                <div class="jb-co-header">
+                  <div class="jb-co-logo">V</div>
+                  <div>
+                    <div class="jb-co-name">Vercel</div>
+                    <div class="jb-co-role">Product Design Lead</div>
+                  </div>
+                  <div class="jb-co-score-badge">94</div>
+                </div>
+
+                <!-- Score breakdown -->
+                <div class="jb-score-section">
+                  <div class="jb-score-label">Priority Score Breakdown</div>
+                  <div class="jb-score-row">
+                    <div class="jb-score-item-label">Your profile match</div>
+                    <div class="jb-score-bar-wrap"><div class="jb-score-bar" style="width:88%;background:var(--teal);"></div></div>
+                    <div class="jb-score-pct">88%</div>
+                  </div>
+                  <div class="jb-score-row">
+                    <div class="jb-score-item-label">Role demand (market)</div>
+                    <div class="jb-score-bar-wrap"><div class="jb-score-bar" style="width:76%;background:var(--accent2);"></div></div>
+                    <div class="jb-score-pct">76%</div>
+                  </div>
+                  <div class="jb-score-row">
+                    <div class="jb-score-item-label">Company hiring velocity</div>
+                    <div class="jb-score-bar-wrap"><div class="jb-score-bar" style="width:95%;background:var(--teal);"></div></div>
+                    <div class="jb-score-pct">95%</div>
+                  </div>
+                  <div class="jb-score-row">
+                    <div class="jb-score-item-label">Competition level</div>
+                    <div class="jb-score-bar-wrap"><div class="jb-score-bar" style="width:42%;background:var(--accent);"></div></div>
+                    <div class="jb-score-pct" style="color:var(--accent);">Low ✓</div>
+                  </div>
+                </div>
+
+                <!-- AI reasoning -->
+                <div class="jb-reason-card">
+                  <div class="jb-reason-label">🧠 Why Jobbrief recommends acting now</div>
+                  <div class="jb-reason-item">▸ Applied 8 days ago with no response — optimal follow-up window is 7–10 days.</div>
+                  <div class="jb-reason-item">▸ Vercel posted 3 new design roles this week, suggesting active team growth.</div>
+                  <div class="jb-reason-item">▸ Your resume matches 88% of the listed requirements based on uploaded CV.</div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="jb-timeline">
+                  <div class="jb-tl-label">Application Timeline</div>
+                  <div class="jb-tl-row"><div class="jb-tl-dot jb-tl-done"></div><div class="jb-tl-line jb-tl-done"></div><div class="jb-tl-tag" style="color:var(--teal);">Applied — Jan 6</div></div>
+                  <div class="jb-tl-row"><div class="jb-tl-dot jb-tl-done"></div><div class="jb-tl-line jb-tl-done"></div><div class="jb-tl-tag" style="color:var(--teal);">Email opened — Jan 7</div></div>
+                  <div class="jb-tl-row"><div class="jb-tl-dot jb-tl-active"></div><div class="jb-tl-line"></div><div class="jb-tl-tag" style="color:var(--accent2);">Follow up now ← you are here</div></div>
+                  <div class="jb-tl-row"><div class="jb-tl-dot jb-tl-pending"></div><div class="jb-tl-line"></div><div class="jb-tl-tag" style="color:#333;">Phone screen</div></div>
+                  <div class="jb-tl-row"><div class="jb-tl-dot jb-tl-pending"></div><div class="jb-tl-line"></div><div class="jb-tl-tag" style="color:#333;">Interview</div></div>
+                </div>
+
+                <!-- CTA -->
+                <div class="jb-cta-btn" id="jbGoFollow">Send Follow-Up →</div>
+              </div>
+            </div>
+
+            <!-- SCREEN 3: Follow-Up Composer -->
+            <div class="jb-screen-inner" id="jbs3" style="display:none;">
+              <div class="jb-topbar">
+                <div class="jb-back-btn" id="jbBack2">← Back</div>
+                <div class="jb-topbar-title">Follow-Up</div>
+                <div style="width:40px;"></div>
+              </div>
+              <div class="jb-s3-body">
+                <div class="jb-compose-label">AI-drafted follow-up for Vercel</div>
+
+                <!-- Email preview -->
+                <div class="jb-email-card">
+                  <div class="jb-email-row"><span class="jb-email-field">To:</span><span class="jb-email-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bcd4d5ced5d2dbfccad9cedfd9d092dfd3d1">[email&#160;protected]</a></span></div>
+                  <div class="jb-email-row"><span class="jb-email-field">Subject:</span><span class="jb-email-val">Following up — Product Design Lead application</span></div>
+                  <div class="jb-email-divider"></div>
+                  <div class="jb-email-body">
+                    Hi Tom,<br><br>
+                    I wanted to follow up on my application for the Product Design Lead role, submitted on January 6th.<br><br>
+                    I'm particularly drawn to Vercel's approach to developer experience — and I believe my background in spatial UX and design systems would translate well to your product's direction.<br><br>
+                    Happy to connect at your convenience.<br><br>
+                    Best,<br>Mia
+                  </div>
+                </div>
+
+                <!-- Tone selector -->
+                <div class="jb-tone-row">
+                  <div class="jb-tone-label">Tone:</div>
+                  <div class="jb-tone-chip jb-tone-active">Professional</div>
+                  <div class="jb-tone-chip">Warm</div>
+                  <div class="jb-tone-chip">Brief</div>
+                </div>
+
+                <!-- Send button -->
+                <div class="jb-send-btn" id="jbSend">
+                  <span id="jbSendLabel">Send via Gmail →</span>
+                </div>
+                <div class="jb-snooze-btn" id="jbSnooze">Remind me tomorrow</div>
+
+                <!-- Success state (hidden) -->
+                <div class="jb-success" id="jbSuccess" style="display:none;">
+                  <div class="jb-success-icon">✓</div>
+                  <div class="jb-success-title">Follow-up sent!</div>
+                  <div class="jb-success-sub">Jobbrief will remind you if Vercel doesn't respond in 5 days.</div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /jb-screen -->
+        </div><!-- /jb-phone -->
+
+        <!-- STEP ANNOTATIONS -->
+        <div class="jb-steps">
+          <div class="jb-step" id="jbstep1">
+            <div class="jb-step-num" id="jbsn1">01</div>
+            <div>
+              <div class="jb-step-title">Smart Dashboard</div>
+              <div class="jb-step-desc">AI ranks every application by priority score. Vercel sits at 94 — the top of today's queue. One tap to find out why.</div>
+            </div>
+          </div>
+          <div class="jb-step" id="jbstep2">
+            <div class="jb-step-num" id="jbsn2">02</div>
+            <div>
+              <div class="jb-step-title">AI Insight</div>
+              <div class="jb-step-desc">The score broken down by profile match, market demand, hiring velocity, and competition — with plain-language reasoning you can act on.</div>
+            </div>
+          </div>
+          <div class="jb-step" id="jbstep3">
+            <div class="jb-step-num" id="jbsn3">03</div>
+            <div>
+              <div class="jb-step-title">One-Tap Follow-Up</div>
+              <div class="jb-step-desc">An AI-drafted follow-up email, personalised to the role and company. Adjust the tone, then send directly from the app in one tap.</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /layout -->
+    </div><!-- /proto-wrap -->
+
+
+    <script>
+    (function(){
+      var cur = 1;
+
+      function show(n) {
+        [1,2,3].forEach(function(i){
+          var s = document.getElementById('jbs'+i);
+          var st = document.getElementById('jbstep'+i);
+          var sn = document.getElementById('jbsn'+i);
+          if(s)  s.style.display  = (i===n) ? 'flex'  : 'none';
+          if(st) st.classList.toggle('active', i===n);
+        });
+        cur = n;
+      }
+
+      // Tap AI item → go to insight
+      var item1 = document.getElementById('jbAiItem1');
+      if(item1) item1.addEventListener('click', function(){ show(2); });
+
+      // Go to follow-up
+      var goFollow = document.getElementById('jbGoFollow');
+      if(goFollow) goFollow.addEventListener('click', function(){ show(3); });
+
+      // Back buttons
+      var back1 = document.getElementById('jbBack1');
+      if(back1) back1.addEventListener('click', function(){ show(1); });
+      var back2 = document.getElementById('jbBack2');
+      if(back2) back2.addEventListener('click', function(){ show(2); });
+
+      // Tone chips
+      document.querySelectorAll('.jb-tone-chip').forEach(function(chip){
+        chip.addEventListener('click', function(){
+          document.querySelectorAll('.jb-tone-chip').forEach(function(c){ c.classList.remove('jb-tone-active'); });
+          chip.classList.add('jb-tone-active');
+        });
+      });
+
+      // Send button
+      var sendBtn = document.getElementById('jbSend');
+      if(sendBtn) sendBtn.addEventListener('click', function(){
+        var label = document.getElementById('jbSendLabel');
+        var email = document.getElementById('jbEmailCard');
+        var tone  = document.getElementById('jbToneRow');
+        var snooze = document.getElementById('jbSnooze');
+        var success = document.getElementById('jbSuccess');
+        var s3body = document.querySelector('.jb-s3-body');
+        if(label) label.textContent = 'Sending...';
+        setTimeout(function(){
+          if(sendBtn) sendBtn.style.display = 'none';
+          if(snooze)  snooze.style.display  = 'none';
+          document.querySelectorAll('.jb-email-card, .jb-tone-row, .jb-compose-label').forEach(function(el){ el.style.display='none'; });
+          if(success) success.style.display = 'flex';
+        }, 800);
+      });
+
+      // Step annotations — hover or click to switch screen
+      [1,2,3].forEach(function(i){
+        var step = document.getElementById('jbstep'+i);
+        if(step){
+          step.style.cursor = 'pointer';
+          step.addEventListener('mouseenter', function(){ show(i); });
+          step.addEventListener('click', function(){ show(i); });
+        }
+      });
+
+      show(1);
+    })();
+    </script>
+
+    <div class="cs-quote">
+      <p>"This would have saved me so much anxiety. I didn't need more apps; I just needed one that told me what to actually do next."</p>
+      <cite>— Usability testing participant, 31, product manager</cite>
+    </div>
+  </div>
+
+  <!-- 05 RESULTS -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">05: Results & Impact</div>
+    <h2 class="cs-section-title">Tested With Real<br>Job Seekers</h2>
+    <div class="cs-divider"></div>
+    <p class="cs-text">Usability testing was conducted with 12 participants, all actively job searching at the time. Sessions used a high-fidelity Figma prototype and focused on task completion, comprehension of the AI score, and overall desirability.</p>
+    <div class="cs-results">
+      <div class="cs-result"><div class="cs-result-num">91%</div><div class="cs-result-title">Task Completion</div><div class="cs-result-desc">Participants successfully identified their top priority application and triggered a follow-up in under 3 minutes.</div></div>
+      <div class="cs-result"><div class="cs-result-num">88%</div><div class="cs-result-title">AI Score Trust</div><div class="cs-result-desc">When shown the AI reasoning panel, 88% said they trusted the priority score enough to act on it immediately.</div></div>
+      <div class="cs-result"><div class="cs-result-num">−64%</div><div class="cs-result-title">Anxiety Reduction</div><div class="cs-result-desc">Self-reported stress about "not knowing what to do next" dropped by 64% after a single session with the prototype.</div></div>
+      <div class="cs-result"><div class="cs-result-num">9.4/10</div><div class="cs-result-title">Desirability Score</div><div class="cs-result-desc">"Would you use this app in your current job search?" 9.4 average. Every participant said yes.</div></div>
+    </div>
+
+    <!-- 📸 SWAP: Usability testing results -->
+    <div class="img-placeholder iph-medium">
+      <div class="iph-icon">📊</div>
+      <div class="iph-label">Replace with: Usability Test Results</div>
+      <div class="iph-hint">Screenshot from Maze or your testing tool: task completion rates, satisfaction scores, and key quotes from participants</div>
+      <div class="iph-filename">→ save as: jobbrief-test-results.png</div>
+    </div>
+
+    <p class="cs-text">The biggest design lesson from Jobbrief: <strong>the best productivity tools don't just organize; they decide.</strong> When users are overwhelmed, removing choices is more valuable than adding features.</p>
+  </div>
+
+</div>
+
+<div class="cs-next">
+  <div><div class="cs-next-label">Next Case Study</div><div class="cs-next-title">RoomCraft Redesign</div></div>
+  <a href="roomcraft-case-study.html" class="cs-next-link">View Case Study</a>
+</div>
+<footer>
+  <span class="footer-copy">© 2025 Mia Designer</span>
+  <a href="index.html" class="footer-logo">MIA<span>.</span></a>
+  <span class="footer-copy">UX Portfolio</span>
+</footer>
+
+<script>
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+  function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+  animRing();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cursor.style.width='20px';cursor.style.height='20px';ring.style.width='56px';ring.style.height='56px';});
+    el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='36px';ring.style.height='36px';});
+  });
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => obs.observe(el));
+  setTimeout(() => { reveals.forEach(el => el.classList.add('visible')); }, 1500);
+</script>
+</body>
+</html>

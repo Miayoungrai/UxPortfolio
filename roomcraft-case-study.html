@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RoomCraft Redesign — Mia's Portfolio</title>
+<title>RoomCraft Redesign: Mia's Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   :root{--black:#0a0a0a;--white:#f5f2ee;--accent:#ff4d1c;--accent2:#ffe14d;--mid:#1c1c1c;--muted:#555;--border:#2a2a2a;}
@@ -105,7 +105,7 @@
   .sb-cta{height:24px;background:rgba(255,77,28,.12);border:1px solid rgba(255,77,28,.18);border-radius:3px;display:flex;align-items:center;justify-content:center;}
   .sb-cta span{font-family:'Syne',sans-serif;font-size:.42rem;font-weight:700;letter-spacing:1px;color:rgba(255,77,28,.35);text-transform:uppercase;}
 
-  /* AFTER step 1 — style quiz */
+  /* AFTER step 1: style quiz */
   .sa1{background:#0d0d12;}
   .sa1-hero{background:linear-gradient(160deg,#1a0a2e,#3d1a6e);padding:14px 10px 10px;}
   .sa1-ey{font-family:'Syne',sans-serif;font-size:.42rem;font-weight:700;letter-spacing:2px;color:rgba(255,77,28,.85);text-transform:uppercase;margin-bottom:3px;}
@@ -125,7 +125,7 @@
   .sa1-btn{height:24px;background:var(--accent);border-radius:3px;display:flex;align-items:center;justify-content:center;}
   .sa1-btn span{font-family:'Syne',sans-serif;font-size:.42rem;font-weight:700;letter-spacing:1px;color:#0a0a0a;text-transform:uppercase;}
 
-  /* AFTER step 2 — room setup */
+  /* AFTER step 2: room setup */
   .sa2{background:#0d0d12;}
   .sa2-nav{background:#111;padding:7px 10px;display:flex;align-items:center;gap:5px;}
   .sa2-bk{width:14px;height:14px;background:#1e1e1e;border-radius:2px;}
@@ -145,7 +145,7 @@
   .sa2-btn{height:22px;background:var(--accent);border-radius:3px;display:flex;align-items:center;justify-content:center;}
   .sa2-btn span{font-family:'Syne',sans-serif;font-size:.4rem;font-weight:700;letter-spacing:1px;color:#0a0a0a;text-transform:uppercase;}
 
-  /* AFTER step 3 — auto-fill */
+  /* AFTER step 3: auto-fill */
   .sa3{background:#0d0d12;}
   .sa3-room{height:110px;background:linear-gradient(135deg,#1a1028,#2d1a50);position:relative;overflow:hidden;}
   .sa3-sofa{position:absolute;bottom:10px;left:10px;width:62px;height:24px;background:rgba(201,169,110,.2);border:1px solid rgba(201,169,110,.35);border-radius:3px;}
@@ -185,22 +185,43 @@
   .rc-body{font-size:.88rem;color:rgba(245,242,238,.5);line-height:1.6;}
 
   /* HEATMAP */
-  .hm-wrap{background:var(--mid);padding:32px;margin:40px 0;}
-  .hm-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
-  .hm-screen{background:#111;border-radius:6px;padding:14px;position:relative;overflow:hidden;}
-  .hm-nav{height:26px;background:#1a1a1a;border-radius:3px;margin-bottom:7px;}
-  .hm-hero{height:76px;background:linear-gradient(135deg,#1a1028,#2a1840);border-radius:4px;margin-bottom:7px;position:relative;overflow:hidden;}
-  .hm-heat{position:absolute;border-radius:50%;filter:blur(14px);}
-  .hm-h1{width:72px;height:56px;background:rgba(255,77,28,.7);top:8px;left:16px;}
-  .hm-h2{width:44px;height:38px;background:rgba(255,200,0,.5);top:18px;left:56px;}
-  .hm-h3{width:26px;height:26px;background:rgba(0,200,100,.3);top:28px;right:28px;}
-  .hm-form{height:56px;background:#1a1a1a;border-radius:4px;margin-bottom:7px;display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:7px;position:relative;overflow:hidden;}
-  .hm-field{background:#111;border:1px solid #2a2a2a;border-radius:2px;}
-  .hm-cold{position:absolute;inset:0;background:rgba(0,80,255,.05);}
-  .hm-leg{display:flex;align-items:center;gap:14px;margin-top:10px;}
-  .hm-li{display:flex;align-items:center;gap:5px;}
-  .hm-ld{width:9px;height:9px;border-radius:50%;}
-  .hm-lt{font-family:'Syne',sans-serif;font-size:.56rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+  /* HEATMAP */
+  .hm-wrap{background:var(--mid);padding:36px;margin:40px 0;}
+  .hm-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:24px;}
+  .hm-layout{display:grid;grid-template-columns:1fr 280px;gap:24px;align-items:start;}
+  .hm-screen{background:#0d0d0d;border:1px solid #222;border-radius:8px;overflow:hidden;}
+  .hm-screen-bar{background:#1a1a1a;padding:8px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #222;}
+  .hm-dot{width:8px;height:8px;border-radius:50%;}
+  .hm-url{flex:1;height:10px;background:#222;border-radius:3px;margin:0 8px;}
+  .hm-zone{position:relative;padding:14px 16px;border-bottom:1px solid #1a1a1a;}
+  .hm-zone:last-child{border-bottom:none;}
+  .hm-zone-label{font-family:'Syne',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+  .hm-zone-bar{height:6px;border-radius:3px;margin-bottom:6px;}
+  .hm-zone-content{display:flex;flex-direction:column;gap:5px;}
+  .hm-mock-row{height:10px;background:#1e1e1e;border-radius:2px;}
+  .hm-mock-row.short{width:60%;}
+  .hm-mock-row.btn{width:40%;background:#2a2a2a;height:18px;border-radius:3px;}
+  .hm-mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+  .hm-mock-field{height:22px;background:#161616;border:1px solid #222;border-radius:3px;position:relative;}
+  .hm-mock-field::before{content:attr(data-label);position:absolute;top:3px;left:6px;font-family:'Syne',sans-serif;font-size:.38rem;letter-spacing:1px;text-transform:uppercase;color:#333;}
+  .hm-heat-blob{position:absolute;border-radius:50%;filter:blur(18px);pointer-events:none;}
+  .hm-pct-badge{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:1rem;padding:2px 8px;border-radius:3px;}
+  .hm-arrow{position:absolute;right:12px;top:8px;font-size:.55rem;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:2px;}
+  /* sidebar */
+  .hm-sidebar{display:flex;flex-direction:column;gap:16px;}
+  .hm-legend{background:#0d0d0d;border:1px solid #222;border-radius:6px;padding:16px;}
+  .hm-legend-title{font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+  .hm-li{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .hm-ld{width:28px;height:8px;border-radius:2px;flex-shrink:0;}
+  .hm-lt{font-family:'Syne',sans-serif;font-size:.65rem;color:rgba(245,242,238,.5);}
+  .hm-stat-card{background:#0d0d0d;border:1px solid #222;border-radius:6px;padding:16px;}
+  .hm-stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;line-height:1;}
+  .hm-stat-label{font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+  .hm-stat-desc{font-size:.78rem;color:rgba(245,242,238,.4);margin-top:6px;line-height:1.5;}
+  .hm-insight{background:#0d0d0d;border:1px solid #222;border-radius:6px;padding:16px;}
+  .hm-insight-label{font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+  .hm-insight-item{display:flex;align-items:flex-start;gap:7px;margin-bottom:8px;font-size:.78rem;color:rgba(245,242,238,.5);line-height:1.5;}
+  .hm-insight-item::before{content:'▸';color:var(--accent);flex-shrink:0;font-size:.65rem;margin-top:2px;}
 
   /* NEXT / FOOTER */
   .cs-next{border-top:1px solid var(--border);padding:60px 48px;display:flex;align-items:center;justify-content:space-between;background:var(--mid);}
@@ -234,7 +255,7 @@
   <div class="cs-hero-content">
     <div class="cs-eyebrow">Case Study 01 · Mobile App · 2024</div>
     <h1 class="cs-title">RoomCraft<br><span>Redesign</span></h1>
-    <p class="cs-summary">Reimagining how people visualize and plan their living spaces — by applying interior design intuition to a broken digital experience.</p>
+    <p class="cs-summary">Reimagining how people visualize and plan their living spaces, applying interior design intuition to a broken digital experience.</p>
     <div class="cs-meta">
       <div><div class="cs-meta-label">Role</div><div class="cs-meta-value">Lead UX Designer</div></div>
       <div><div class="cs-meta-label">Timeline</div><div class="cs-meta-value">14 Weeks</div></div>
@@ -248,11 +269,11 @@
 
   <!-- 01 PROBLEM -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">01 — Problem & Goals</div>
+    <div class="cs-section-label">01: Problem & Goals</div>
     <h2 class="cs-section-title">A Powerful App That<br>Nobody Could Finish</h2>
     <div class="cs-divider"></div>
-    <p class="cs-text">RoomCraft had impressive 3D rendering technology under the hood — but a <strong>38% drop-off rate during onboarding</strong> told a different story. Users were abandoning before ever placing a single piece of furniture.</p>
-    <p class="cs-text">As someone with an interior design background, I immediately recognized the disconnect: the app was designed by engineers who understood rendering, not by people who understand how humans <em>think about rooms</em>. People don't start with technical parameters — they start with a feeling.</p>
+    <p class="cs-text">RoomCraft had impressive 3D rendering technology under the hood, but a <strong>38% drop-off rate during onboarding</strong> told a different story. Users were abandoning before ever placing a single piece of furniture.</p>
+    <p class="cs-text">As someone with an interior design background, I immediately recognized the disconnect: the app was designed by engineers who understood rendering, not by people who understand how humans <em>think about rooms</em>. People don't start with technical parameters; they start with a feeling.</p>
     <div class="cs-cards">
       <div class="cs-card"><div class="cs-card-num">38%</div><div class="cs-card-label">Onboarding Drop-off</div><div class="cs-card-desc">Users abandoned before completing room setup due to complexity and cognitive overload.</div></div>
       <div class="cs-card"><div class="cs-card-num">2.1★</div><div class="cs-card-label">App Store Rating</div><div class="cs-card-desc">"Too complicated" and "where do I even start?" dominated reviews.</div></div>
@@ -272,25 +293,104 @@
 
   <!-- 02 RESEARCH -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">02 — Research & Discovery</div>
+    <div class="cs-section-label">02: Research & Discovery</div>
     <h2 class="cs-section-title">Listening Before<br>Drawing Anything</h2>
     <div class="cs-divider"></div>
-    <p class="cs-text">I conducted <strong>18 moderated user interviews</strong> across three segments: first-time renters, homeowners redecorating, and interior design enthusiasts. The most revealing insight: <strong>people don't start with dimensions — they start with inspiration.</strong></p>
+    <p class="cs-text">I conducted <strong>18 moderated user interviews</strong> across three segments: first-time renters, homeowners redecorating, and interior design enthusiasts. The most revealing insight: <strong>people don't start with dimensions; they start with inspiration.</strong></p>
 
     <!-- HEATMAP VISUALIZATION -->
     <div class="hm-wrap reveal">
-      <div class="hm-label">Session Recording Analysis — Where Users Engaged vs. Dropped Off</div>
-      <div class="hm-screen">
-        <div class="hm-nav"></div>
-        <div class="hm-hero">
-          <div class="hm-heat hm-h1"></div><div class="hm-heat hm-h2"></div><div class="hm-heat hm-h3"></div>
+      <div class="hm-label">Session Recording Analysis: Where Users Engaged vs. Dropped Off</div>
+      <div class="hm-layout">
+
+        <!-- SCREEN MOCKUP WITH ZONES -->
+        <div class="hm-screen">
+          <!-- Browser bar -->
+          <div class="hm-screen-bar">
+            <div class="hm-dot" style="background:#ff5f57;"></div>
+            <div class="hm-dot" style="background:#febc2e;"></div>
+            <div class="hm-dot" style="background:#28c840;"></div>
+            <div class="hm-url"></div>
+          </div>
+
+          <!-- ZONE 1: Hero / Welcome screen — HIGH engagement -->
+          <div class="hm-zone" style="background:rgba(255,77,28,.04);">
+            <div class="hm-heat-blob" style="width:180px;height:80px;background:rgba(255,77,28,.35);top:10px;left:20px;"></div>
+            <div class="hm-heat-blob" style="width:100px;height:60px;background:rgba(255,200,0,.2);top:20px;left:140px;"></div>
+            <div class="hm-zone-label" style="color:rgba(255,77,28,.9);">① Welcome Screen</div>
+            <div class="hm-zone-bar" style="width:88%;background:linear-gradient(90deg,rgba(255,77,28,.8),rgba(255,77,28,.3));"></div>
+            <div class="hm-zone-content">
+              <div class="hm-mock-row" style="width:55%;background:#2a1a1a;"></div>
+              <div class="hm-mock-row short" style="background:#231616;"></div>
+              <div class="hm-mock-row btn"></div>
+            </div>
+            <div class="hm-pct-badge" style="background:rgba(255,77,28,.15);color:rgba(255,77,28,.9);">88% engaged</div>
+          </div>
+
+          <!-- ZONE 2: Style preferences — MEDIUM engagement -->
+          <div class="hm-zone" style="background:rgba(255,200,0,.03);">
+            <div class="hm-heat-blob" style="width:120px;height:60px;background:rgba(255,200,0,.25);top:15px;left:30px;"></div>
+            <div class="hm-zone-label" style="color:rgba(255,200,0,.9);">② Style Selection</div>
+            <div class="hm-zone-bar" style="width:62%;background:linear-gradient(90deg,rgba(255,200,0,.7),rgba(255,200,0,.2));"></div>
+            <div class="hm-mock-grid" style="margin-top:4px;">
+              <div class="hm-mock-field" data-label="MODERN"></div>
+              <div class="hm-mock-field" data-label="MINIMAL"></div>
+              <div class="hm-mock-field" data-label="RUSTIC"></div>
+              <div class="hm-mock-field" data-label="ECLECTIC"></div>
+            </div>
+            <div class="hm-pct-badge" style="background:rgba(255,200,0,.1);color:rgba(255,200,0,.9);">62% engaged</div>
+          </div>
+
+          <!-- ZONE 3: Room dimensions form — LOW / DROP-OFF -->
+          <div class="hm-zone" style="background:rgba(60,100,255,.04);">
+            <div class="hm-heat-blob" style="width:200px;height:70px;background:rgba(60,100,255,.15);inset:0;margin:auto;"></div>
+            <div class="hm-zone-label" style="color:rgba(100,140,255,.9);">③ Room Setup Form  <span style="font-size:.5rem;color:rgba(255,77,28,.8);margin-left:6px;">⚠ PRIMARY DROP-OFF</span></div>
+            <div class="hm-zone-bar" style="width:24%;background:linear-gradient(90deg,rgba(60,100,255,.6),rgba(60,100,255,.1));"></div>
+            <div class="hm-mock-grid" style="margin-top:4px;">
+              <div class="hm-mock-field" data-label="ROOM WIDTH (FT)"></div>
+              <div class="hm-mock-field" data-label="ROOM LENGTH (FT)"></div>
+              <div class="hm-mock-field" data-label="CEILING HEIGHT"></div>
+              <div class="hm-mock-field" data-label="WINDOW COUNT"></div>
+              <div class="hm-mock-field" data-label="DOOR POSITIONS"></div>
+              <div class="hm-mock-field" data-label="FLOOR TYPE"></div>
+            </div>
+            <div class="hm-arrow" style="background:rgba(255,40,40,.15);color:rgba(255,80,80,.9);">↓ 38% abandoned here</div>
+          </div>
+
+          <!-- ZONE 4: 3D Preview — almost no one reached this -->
+          <div class="hm-zone">
+            <div class="hm-zone-label" style="color:#333;">④ 3D Room Preview</div>
+            <div class="hm-zone-bar" style="width:12%;background:rgba(255,255,255,.1);"></div>
+            <div style="height:28px;background:#0d0d0d;border-radius:3px;display:flex;align-items:center;justify-content:center;">
+              <span style="font-family:'Syne',sans-serif;font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:#222;">Only 12% reached this screen</span>
+            </div>
+          </div>
         </div>
-        <div class="hm-form"><div class="hm-field"></div><div class="hm-field"></div><div class="hm-field"></div><div class="hm-field"></div><div class="hm-cold"></div></div>
-        <div class="hm-leg">
-          <div class="hm-li"><div class="hm-ld" style="background:rgba(255,77,28,.8);"></div><div class="hm-lt">High engagement</div></div>
-          <div class="hm-li"><div class="hm-ld" style="background:rgba(255,200,0,.6);"></div><div class="hm-lt">Medium</div></div>
-          <div class="hm-li"><div class="hm-ld" style="background:rgba(0,80,255,.4);"></div><div class="hm-lt">Drop-off zone</div></div>
+
+        <!-- SIDEBAR -->
+        <div class="hm-sidebar">
+          <div class="hm-legend">
+            <div class="hm-legend-title">Engagement Level</div>
+            <div class="hm-li"><div class="hm-ld" style="background:rgba(255,77,28,.7);"></div><div class="hm-lt">High — users read, tap, explore</div></div>
+            <div class="hm-li"><div class="hm-ld" style="background:rgba(255,200,0,.6);"></div><div class="hm-lt">Medium — hesitation visible</div></div>
+            <div class="hm-li"><div class="hm-ld" style="background:rgba(60,100,255,.5);"></div><div class="hm-lt">Drop-off zone — users exit</div></div>
+            <div class="hm-li"><div class="hm-ld" style="background:#1e1e1e;border:1px solid #333;"></div><div class="hm-lt">Unreached — session ended</div></div>
+          </div>
+
+          <div class="hm-stat-card">
+            <div class="hm-stat-num" style="color:var(--accent);">38%</div>
+            <div class="hm-stat-label">Abandoned at Zone ③</div>
+            <div class="hm-stat-desc">Users dropped off at the 11-field room dimensions form — before ever seeing the 3D preview the app was built around.</div>
+          </div>
+
+          <div class="hm-insight">
+            <div class="hm-insight-label">Key Observations</div>
+            <div class="hm-insight-item">Users re-read Zone ① multiple times, showing high intent but hesitation to proceed.</div>
+            <div class="hm-insight-item">Style selection (Zone ②) saw rage-clicks — options felt too limited and abstract.</div>
+            <div class="hm-insight-item">Average time on Zone ③ was 47 seconds before abandoning, suggesting confusion, not disinterest.</div>
+          </div>
         </div>
+
       </div>
     </div>
 
@@ -303,7 +403,7 @@
     </div>
 
     <div class="research-grid reveal">
-      <div class="rc"><div class="rc-label">Finding 01</div><div class="rc-title">Inspiration First</div><div class="rc-body">Users start planning with images, moods, and references — not dimensions. The app forced them to work backwards.</div></div>
+      <div class="rc"><div class="rc-label">Finding 01</div><div class="rc-title">Inspiration First</div><div class="rc-body">Users start planning with images, moods, and references, not dimensions. The app forced them to work backwards.</div></div>
       <div class="rc"><div class="rc-label">Finding 02</div><div class="rc-title">Blank Canvas Fear</div><div class="rc-body">An empty room created decision paralysis. Users needed something to react to, not build from scratch.</div></div>
       <div class="rc"><div class="rc-label">Finding 03</div><div class="rc-title">Form Fatigue</div><div class="rc-body">The 11-field room setup form triggered immediate overwhelm. Users wanted to "just try it" first.</div></div>
       <div class="rc"><div class="rc-label">Finding 04</div><div class="rc-title">Emotional Decisions</div><div class="rc-body">74% of room planning decisions are emotionally driven. The technical-first approach was fundamentally misaligned.</div></div>
@@ -316,10 +416,10 @@
 
   <!-- 03 PROCESS -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">03 — Process & Wireframes</div>
+    <div class="cs-section-label">03: Process & Wireframes</div>
     <h2 class="cs-section-title">From Sketch to<br>High Fidelity</h2>
     <div class="cs-divider"></div>
-    <p class="cs-text">I restructured the onboarding flow around the mental model users already had — <strong>inspiration first, configuration second.</strong> Three divergent concepts were sketched and paper-tested before going digital.</p>
+    <p class="cs-text">I restructured the onboarding flow around the mental model users already had: <strong>inspiration first, configuration second.</strong> Three divergent concepts were sketched and paper-tested before going digital.</p>
 
     <!-- 📸 SWAP: Replace with your hand-drawn sketches or paper prototype photos -->
     <div class="img-placeholder iph-medium">
@@ -331,7 +431,7 @@
 
     <!-- REDESIGNED FLOW -->
     <div class="flow-wrap reveal">
-      <div class="flow-title">Redesigned Onboarding Flow — Before vs. After</div>
+      <div class="flow-title">Redesigned Onboarding Flow: Before vs. After</div>
       <div class="flow-row">
         <div class="flow-node"><div class="flow-bub on">🎨</div><div class="flow-nl on">Style<br>Quiz</div></div>
         <div class="flow-arr on"></div>
@@ -347,7 +447,7 @@
 
     <!-- PHONE MOCKUPS -->
     <div class="phone-showcase reveal">
-      <div class="phone-showcase-label">Wireframes — Before & After: 3-Step Onboarding</div>
+      <div class="phone-showcase-label">Wireframes: Before & After, 3-Step Onboarding</div>
       <div class="phone-row">
 
         <div class="phone-wrap">
@@ -369,7 +469,7 @@
         </div>
 
         <div class="phone-wrap">
-          <div class="phone-tag" style="color:var(--accent);"><span class="dot" style="background:var(--accent);"></span>After — Step 1</div>
+          <div class="phone-tag" style="color:var(--accent);"><span class="dot" style="background:var(--accent);"></span>After: Step 1</div>
           <div class="pf lg">
             <div class="pf-notch"></div>
             <div class="pf-screen sa1">
@@ -393,7 +493,7 @@
         </div>
 
         <div class="phone-wrap">
-          <div class="phone-tag" style="color:var(--accent);"><span class="dot" style="background:var(--accent);"></span>After — Step 2</div>
+          <div class="phone-tag" style="color:var(--accent);"><span class="dot" style="background:var(--accent);"></span>After: Step 2</div>
           <div class="pf">
             <div class="pf-notch"></div>
             <div class="pf-screen sa2">
@@ -414,7 +514,7 @@
         </div>
 
         <div class="phone-wrap">
-          <div class="phone-tag" style="color:var(--accent);"><span class="dot" style="background:var(--accent);"></span>After — Step 3</div>
+          <div class="phone-tag" style="color:var(--accent);"><span class="dot" style="background:var(--accent);"></span>After: Step 3</div>
           <div class="pf">
             <div class="pf-notch"></div>
             <div class="pf-screen sa3">
@@ -444,50 +544,280 @@
     <div class="img-placeholder iph-wide">
       <div class="iph-icon">🖥️</div>
       <div class="iph-label">Replace with: Mid-Fidelity Wireframes</div>
-      <div class="iph-hint">Export your Figma wireframe frames — ideally a horizontal spread of the full onboarding flow at mid-fidelity</div>
+      <div class="iph-hint">Export your Figma wireframe frames, ideally a horizontal spread of the full onboarding flow at mid-fidelity</div>
       <div class="iph-filename">→ save as: roomcraft-mid-fi-wireframes.png</div>
     </div>
 
     <div class="cs-process">
       <div class="cs-step"><div class="cs-step-num">01</div><div><div class="cs-step-title">Inspiration Gateway</div><div class="cs-step-desc">Replaced the form with a style quiz and mood board selector. Users pick aesthetic vibes before touching measurements.</div></div></div>
       <div class="cs-step"><div class="cs-step-num">02</div><div><div class="cs-step-title">Progressive Room Setup</div><div class="cs-step-desc">Broke 11 fields into a 3-step guided flow with smart defaults. Advanced options discoverable but not front-loaded.</div></div></div>
-      <div class="cs-step"><div class="cs-step-num">03</div><div><div class="cs-step-title">Instant Gratification</div><div class="cs-step-desc">An "auto-populate" feature fills the room with AI-curated furniture based on style — giving users something to react to immediately.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">03</div><div><div class="cs-step-title">Instant Gratification</div><div class="cs-step-desc">An "auto-populate" feature fills the room with AI-curated furniture based on style, giving users something to react to immediately.</div></div></div>
       <div class="cs-step"><div class="cs-step-num">04</div><div><div class="cs-step-title">Usability Testing & Iteration</div><div class="cs-step-desc">3 rounds of testing with 6 participants each via Maze. Iterated on gestures, labels, and the furniture selection panel.</div></div></div>
     </div>
   </div>
 
   <!-- 04 FINAL DESIGN -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">04 — Final Design</div>
+    <div class="cs-section-label">04: Final Design</div>
     <h2 class="cs-section-title">Spatial Thinking<br>Made Digital</h2>
     <div class="cs-divider"></div>
-    <p class="cs-text">The final design transformed RoomCraft's onboarding from a technical setup process into an experience that mirrors how interior designers actually work — starting with vision, then grounding it in reality.</p>
+    <p class="cs-text">The final design transformed RoomCraft's onboarding from a technical setup process into an experience that mirrors how interior designers actually work: starting with vision, then grounding it in reality.</p>
 
     <!-- 📸 SWAP: Replace with final hi-fi screen spread from Figma -->
     <div class="img-placeholder iph-wide">
       <div class="iph-icon">🎨</div>
       <div class="iph-label">Replace with: Final Hi-Fidelity Screens</div>
-      <div class="iph-hint">Your polished Figma final screens — a 3–4 screen spread showing the completed onboarding flow in full color and detail</div>
+      <div class="iph-hint">Your polished Figma final screens: a 3–4 screen spread showing the completed onboarding flow in full color and detail</div>
       <div class="iph-filename">→ save as: roomcraft-final-screens.png</div>
     </div>
 
-    <!-- 📸 SWAP: Replace with prototype recording or GIF -->
-    <div class="img-placeholder iph-medium">
-      <div class="iph-icon">▶️</div>
-      <div class="iph-label">Replace with: Prototype Demo (GIF or Video)</div>
-      <div class="iph-hint">Screen recording from Figma prototype, or a Loom walkthrough — export as .gif or embed a video link</div>
-      <div class="iph-filename">→ save as: roomcraft-prototype.gif</div>
+    <!-- PROTOTYPE DEMO: Animated onboarding flow -->
+    <div class="proto-demo reveal">
+      <div class="proto-label">Prototype Demo — Redesigned Onboarding Flow</div>
+      <div class="proto-wrap">
+
+        <!-- PHONE SHELL -->
+        <div class="proto-phone">
+          <div class="proto-notch"></div>
+          <div class="proto-screen" id="protoScreen">
+
+            <!-- SCREEN 1: Style Quiz -->
+            <div class="pscreen ps1" id="ps1">
+              <div class="ps-status"></div>
+              <div class="ps-head">
+                <div class="ps-eyebrow">STEP 1 OF 3</div>
+                <div class="ps-title">What's your<br>style?</div>
+                <div class="ps-sub">Pick what feels like home.</div>
+              </div>
+              <div class="ps-style-grid">
+                <div class="ps-style-card active" id="sc1">
+                  <div class="ps-style-img" style="background:linear-gradient(135deg,#1a1a2e,#2d2d44);"></div>
+                  <div class="ps-style-name">Modern</div>
+                </div>
+                <div class="ps-style-card" id="sc2">
+                  <div class="ps-style-img" style="background:linear-gradient(135deg,#2e1a0e,#4a2f1a);"></div>
+                  <div class="ps-style-name">Rustic</div>
+                </div>
+                <div class="ps-style-card" id="sc3">
+                  <div class="ps-style-img" style="background:linear-gradient(135deg,#0e2e1a,#1a4a2f);"></div>
+                  <div class="ps-style-name">Natural</div>
+                </div>
+                <div class="ps-style-card" id="sc4">
+                  <div class="ps-style-img" style="background:linear-gradient(135deg,#2e0e2e,#4a1a4a);"></div>
+                  <div class="ps-style-name">Eclectic</div>
+                </div>
+              </div>
+              <div class="ps-cta ps-cta-active" id="ctaS1">Continue →</div>
+            </div>
+
+            <!-- SCREEN 2: Room Setup (simplified) -->
+            <div class="pscreen ps2" id="ps2" style="display:none;">
+              <div class="ps-status"></div>
+              <div class="ps-head">
+                <div class="ps-eyebrow">STEP 2 OF 3</div>
+                <div class="ps-title">Your room,<br>roughly.</div>
+                <div class="ps-sub">Drag to resize — we'll handle the math.</div>
+              </div>
+              <div class="ps-room-wrap">
+                <div class="ps-room-canvas">
+                  <div class="ps-room-outline" id="roomOutline">
+                    <div class="ps-room-label">Living Room</div>
+                    <div class="ps-room-handle"></div>
+                    <!-- furniture silhouettes -->
+                    <div class="ps-furn sofa"></div>
+                    <div class="ps-furn table"></div>
+                    <div class="ps-furn rug"></div>
+                  </div>
+                </div>
+                <div class="ps-room-dims">
+                  <span class="ps-dim">12 ft</span>
+                  <span class="ps-dim-x">×</span>
+                  <span class="ps-dim">14 ft</span>
+                </div>
+              </div>
+              <div class="ps-cta ps-cta-active" id="ctaS2">Generate My Room →</div>
+            </div>
+
+            <!-- SCREEN 3: 3D Preview -->
+            <div class="pscreen ps3" id="ps3" style="display:none;">
+              <div class="ps-status"></div>
+              <div class="ps-head" style="padding-bottom:8px;">
+                <div class="ps-eyebrow" style="color:#a78bfa;">YOUR ROOM IS READY</div>
+                <div class="ps-title" style="font-size:.95rem;">Here's your<br>Modern space.</div>
+              </div>
+              <div class="ps-preview-wrap">
+                <!-- pseudo 3D room perspective -->
+                <div class="ps-3d-room">
+                  <div class="ps-3d-floor"></div>
+                  <div class="ps-3d-wall-back"></div>
+                  <div class="ps-3d-wall-left"></div>
+                  <!-- furniture blocks in perspective -->
+                  <div class="ps-3d-sofa"></div>
+                  <div class="ps-3d-table"></div>
+                  <div class="ps-3d-rug"></div>
+                  <div class="ps-3d-plant"></div>
+                  <!-- window light -->
+                  <div class="ps-3d-light"></div>
+                </div>
+              </div>
+              <div class="ps-action-row">
+                <div class="ps-cta ps-cta-active" style="flex:1;font-size:.55rem;padding:8px 0;">Explore Room</div>
+                <div class="ps-cta" style="flex:1;font-size:.55rem;padding:8px 0;background:#1a1a1a;color:#888;">Swap Style</div>
+              </div>
+            </div>
+
+          </div><!-- /proto-screen -->
+
+          <!-- progress dots -->
+          <div class="proto-dots">
+            <div class="pdot active" id="pd1"></div>
+            <div class="pdot" id="pd2"></div>
+            <div class="pdot" id="pd3"></div>
+          </div>
+        </div><!-- /proto-phone -->
+
+        <!-- STEP ANNOTATIONS -->
+        <div class="proto-steps">
+          <div class="proto-step" id="pstep1">
+            <div class="proto-step-num active" id="psn1">01</div>
+            <div>
+              <div class="proto-step-title">Style First</div>
+              <div class="proto-step-desc">User picks a mood before touching any measurements. Inspiration before configuration.</div>
+            </div>
+          </div>
+          <div class="proto-step" id="pstep2">
+            <div class="proto-step-num" id="psn2">02</div>
+            <div>
+              <div class="proto-step-title">Drag to Size</div>
+              <div class="proto-step-desc">Room dimensions set by dragging a visual canvas, not typing numbers into 11 fields.</div>
+            </div>
+          </div>
+          <div class="proto-step" id="pstep3">
+            <div class="proto-step-num" id="psn3">03</div>
+            <div>
+              <div class="proto-step-title">Instant Preview</div>
+              <div class="proto-step-desc">A furnished 3D room generated immediately — something to react to, not build from scratch.</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /proto-wrap -->
     </div>
 
+    <style>
+      .proto-demo{background:var(--mid);padding:36px;margin:40px 0;}
+      .proto-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:28px;}
+      .proto-wrap{display:flex;gap:48px;align-items:center;flex-wrap:wrap;}
+      .proto-phone{width:200px;flex-shrink:0;background:#0d0d0d;border:2px solid #2a2a2a;border-radius:32px;padding:12px 10px 10px;box-shadow:0 32px 80px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.05);}
+      .proto-notch{width:56px;height:8px;background:#1a1a1a;border-radius:4px;margin:0 auto 10px;}
+      .proto-screen{border-radius:20px;overflow:hidden;background:#111;min-height:320px;position:relative;}
+      .proto-dots{display:flex;justify-content:center;gap:6px;margin-top:10px;}
+      .pdot{width:6px;height:6px;border-radius:50%;background:#2a2a2a;transition:background .3s;}
+      .pdot.active{background:var(--accent);}
+      /* screens */
+      .pscreen{padding:14px 12px;display:flex;flex-direction:column;gap:10px;}
+      .ps-status{height:6px;background:#1a1a1a;border-radius:3px;margin-bottom:4px;}
+      .ps-eyebrow{font-family:'Syne',sans-serif;font-size:.48rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);}
+      .ps-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;line-height:1.1;color:#f5f2ee;margin:4px 0 2px;}
+      .ps-sub{font-family:'DM Sans',sans-serif;font-size:.6rem;color:#555;margin-bottom:4px;}
+      /* style grid */
+      .ps-style-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+      .ps-style-card{border:1.5px solid #222;border-radius:6px;overflow:hidden;cursor:pointer;transition:border-color .2s;}
+      .ps-style-card.active{border-color:var(--accent);}
+      .ps-style-img{height:44px;}
+      .ps-style-name{font-family:'Syne',sans-serif;font-size:.5rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;padding:4px 6px;background:#111;}
+      .ps-style-card.active .ps-style-name{color:var(--accent);}
+      /* cta */
+      .ps-cta{font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:10px;border-radius:4px;background:#1a1a1a;color:#444;margin-top:4px;}
+      .ps-cta-active{background:var(--accent)!important;color:#0a0a0a!important;cursor:pointer;}
+      /* room canvas */
+      .ps-room-wrap{display:flex;flex-direction:column;gap:6px;}
+      .ps-room-canvas{background:#0d0d0d;border:1px solid #1e1e1e;border-radius:4px;padding:10px;height:110px;display:flex;align-items:center;justify-content:center;}
+      .ps-room-outline{width:110px;height:85px;border:2px solid var(--accent);border-radius:3px;position:relative;display:flex;align-items:center;justify-content:center;}
+      .ps-room-label{font-family:'Syne',sans-serif;font-size:.4rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,77,28,.5);position:absolute;top:4px;left:6px;}
+      .ps-room-handle{position:absolute;bottom:-5px;right:-5px;width:10px;height:10px;background:var(--accent);border-radius:2px;}
+      .ps-furn{position:absolute;border-radius:2px;}
+      .ps-furn.sofa{width:46px;height:16px;background:#1e1e1e;border:1px solid #333;bottom:12px;left:10px;}
+      .ps-furn.table{width:20px;height:20px;background:#1a1a1a;border:1px solid #2a2a2a;bottom:28px;right:14px;border-radius:50%;}
+      .ps-furn.rug{width:50px;height:28px;background:rgba(255,77,28,.06);border:1px solid rgba(255,77,28,.15);bottom:8px;left:8px;}
+      .ps-room-dims{display:flex;align-items:center;justify-content:center;gap:6px;}
+      .ps-dim{font-family:'Bebas Neue',sans-serif;font-size:.85rem;color:var(--accent);}
+      .ps-dim-x{font-family:'Syne',sans-serif;font-size:.6rem;color:#333;}
+      /* 3D room */
+      .ps-preview-wrap{background:#0d0d0d;border-radius:6px;padding:8px;height:120px;overflow:hidden;}
+      .ps-3d-room{width:100%;height:100%;position:relative;}
+      .ps-3d-floor{position:absolute;bottom:0;left:0;right:0;height:50px;background:linear-gradient(180deg,#1a1510,#221a12);transform:perspective(200px) rotateX(20deg);transform-origin:bottom;}
+      .ps-3d-wall-back{position:absolute;top:0;left:0;right:0;height:75px;background:linear-gradient(180deg,#141010,#1a1512);}
+      .ps-3d-wall-left{position:absolute;top:0;left:0;width:30px;bottom:0;background:linear-gradient(90deg,#0d0a08,#141010);clip-path:polygon(0 0,100% 20%,100% 80%,0 100%);}
+      .ps-3d-sofa{position:absolute;bottom:14px;left:20px;width:70px;height:22px;background:#2a2018;border-radius:3px 3px 0 0;border:1px solid #3a3020;}
+      .ps-3d-table{position:absolute;bottom:12px;left:100px;width:28px;height:28px;background:#1e1812;border-radius:50%;border:1px solid #2e2818;}
+      .ps-3d-rug{position:absolute;bottom:8px;left:16px;width:82px;height:14px;background:rgba(147,51,234,.08);border:1px solid rgba(147,51,234,.2);border-radius:2px;}
+      .ps-3d-plant{position:absolute;bottom:14px;right:8px;width:14px;height:30px;background:linear-gradient(180deg,#1a2e1a,#0d180d);border-radius:50% 50% 20% 20%;}
+      .ps-3d-light{position:absolute;top:0;right:20px;width:40px;height:60px;background:linear-gradient(180deg,rgba(255,220,150,.06),transparent);pointer-events:none;}
+      .ps-action-row{display:flex;gap:6px;margin-top:auto;}
+      /* annotations */
+      .proto-steps{flex:1;min-width:200px;display:flex;flex-direction:column;gap:20px;}
+      .proto-step{display:flex;gap:14px;align-items:flex-start;opacity:.35;transition:opacity .4s;}
+      .proto-step.active{opacity:1;}
+      .proto-step-num{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#2a2a2a;line-height:1;flex-shrink:0;transition:color .4s;}
+      .proto-step-num.active{color:var(--accent);}
+      .proto-step-title{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:4px;}
+      .proto-step-desc{font-size:.8rem;color:var(--muted);line-height:1.6;}
+    </style>
+
+    <script>
+      (function(){
+        var screens = ['ps1','ps2','ps3'];
+        var dots    = ['pd1','pd2','pd3'];
+        var steps   = ['pstep1','pstep2','pstep3'];
+        var nums    = ['psn1','psn2','psn3'];
+        var current = 0;
+
+        function goTo(n) {
+          // hide all screens
+          screens.forEach(function(id){ var el=document.getElementById(id); if(el){el.style.display='none';} });
+          dots.forEach(function(id){ var el=document.getElementById(id); if(el){el.classList.remove('active');} });
+          steps.forEach(function(id){ var el=document.getElementById(id); if(el){el.classList.remove('active');} });
+          nums.forEach(function(id){ var el=document.getElementById(id); if(el){el.classList.remove('active');} });
+          // show target
+          var s=document.getElementById(screens[n]); if(s){s.style.display='flex';}
+          var d=document.getElementById(dots[n]); if(d){d.classList.add('active');}
+          var st=document.getElementById(steps[n]); if(st){st.classList.add('active');}
+          var sn=document.getElementById(nums[n]); if(sn){sn.classList.add('active');}
+          current = n;
+        }
+
+        // Wire up CTA buttons
+        var c1=document.getElementById('ctaS1'); if(c1){ c1.addEventListener('click',function(){ goTo(1); }); }
+        var c2=document.getElementById('ctaS2'); if(c2){ c2.addEventListener('click',function(){ goTo(2); }); }
+
+        // Style card selection
+        ['sc1','sc2','sc3','sc4'].forEach(function(id){
+          var el=document.getElementById(id);
+          if(el){ el.addEventListener('click',function(){
+            ['sc1','sc2','sc3','sc4'].forEach(function(sid){ var s=document.getElementById(sid); if(s){s.classList.remove('active');} });
+            el.classList.add('active');
+          }); }
+        });
+
+        // Auto-advance every 3.5s
+        setInterval(function(){
+          goTo((current + 1) % 3);
+        }, 3500);
+
+        goTo(0);
+      })();
+    </script>
+
     <div class="cs-quote">
-      <p>"It finally feels like how I actually think about decorating. I wasn't filling out a form — I was designing a room."</p>
+      <p>"It finally feels like how I actually think about decorating. I wasn't filling out a form; I was designing a room."</p>
       <cite>— Post-launch user interview participant</cite>
     </div>
   </div>
 
   <!-- 05 RESULTS -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">05 — Results & Impact</div>
+    <div class="cs-section-label">05: Results & Impact</div>
     <h2 class="cs-section-title">Numbers That<br>Tell the Story</h2>
     <div class="cs-divider"></div>
     <p class="cs-text">Six weeks after launch, the redesigned onboarding showed significant improvements across every key metric. Users stopped describing RoomCraft as "complicated" and started calling it "fun."</p>
@@ -506,7 +836,7 @@
       <div class="iph-filename">→ save as: roomcraft-results-data.png</div>
     </div>
 
-    <p class="cs-text">This project reinforced something I believe deeply: <strong>the best digital experiences borrow from how we experience the physical world.</strong> My interior design background wasn't a detour — it was the exact lens this problem needed.</p>
+    <p class="cs-text">This project reinforced something I believe deeply: <strong>the best digital experiences borrow from how we experience the physical world.</strong> My interior design background wasn't a detour; it was the exact lens this problem needed.</p>
   </div>
 
 </div>

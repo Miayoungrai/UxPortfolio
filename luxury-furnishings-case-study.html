@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luxury Furnishings Store — Mia's Portfolio</title>
+<title>Luxury Furnishings Store: Mia's Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   :root{--black:#0a0a0a;--white:#f5f2ee;--accent:#ff4d1c;--accent2:#ffe14d;--mid:#1c1c1c;--muted:#555;--border:#2a2a2a;--gold:#c9a96e;--gold-soft:rgba(201,169,110,0.15);}
@@ -122,6 +122,12 @@
   .ep-secondary{height:18px;background:#1a1a1a;border:1px solid #222;border-radius:2px;display:flex;align-items:center;justify-content:center;}
   .ep-secondary span{font-family:'Syne',sans-serif;font-size:.4rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
 
+  /* BEFORE/AFTER CALLOUT ANNOTATIONS */
+  .cp-callouts{display:flex;flex-direction:column;gap:5px;margin-top:12px;}
+  .cp-callout{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:600;padding:5px 10px;border-radius:3px;line-height:1.4;}
+  .cp-callout-bad{background:rgba(255,77,28,.07);border:1px solid rgba(255,77,28,.2);color:rgba(255,100,60,.8);}
+  .cp-callout-good{background:rgba(201,169,110,.07);border:1px solid rgba(201,169,110,.2);color:rgba(201,169,110,.9);}
+
   /* CHECKOUT COMPARISON */
   .checkout-compare{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;background:var(--mid);padding:36px;}
   .cc-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:24px;grid-column:1/-1;}
@@ -177,7 +183,7 @@
   <div class="cs-hero-content">
     <div class="cs-eyebrow">Case Study 02 · E-commerce · 2023</div>
     <h1 class="cs-title">Luxury<br><span>Furnishings</span><br>Store</h1>
-    <p class="cs-summary">Translating the feeling of a high-end showroom into a digital experience — where every interaction should feel as considered as the furniture itself.</p>
+    <p class="cs-summary">Translating the feeling of a high-end showroom into a digital experience where every interaction should feel as considered as the furniture itself.</p>
     <div class="cs-meta">
       <div><div class="cs-meta-label">Role</div><div class="cs-meta-value">UX / UI Designer</div></div>
       <div><div class="cs-meta-label">Timeline</div><div class="cs-meta-value">10 Weeks</div></div>
@@ -191,14 +197,14 @@
 
   <!-- 01 PROBLEM -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">01 — Problem & Goals</div>
+    <div class="cs-section-label">01: Problem & Goals</div>
     <h2 class="cs-section-title">The Gap Between<br>Brand & Experience</h2>
     <div class="cs-divider"></div>
-    <p class="cs-text">Maison Éclat was a beloved high-end furniture brand with loyal showroom clients — but their e-commerce site told a completely different story. <strong>Cart abandonment sat at 71%</strong>, and the product experience was generic enough to belong to any budget retailer.</p>
-    <p class="cs-text">My mandate: redesign product discovery and checkout to match the brand's luxury positioning. As an interior designer, I understood exactly what this audience needed — and what they'd reject.</p>
+    <p class="cs-text">Luxora was a beloved high-end furniture brand with loyal showroom clients, but their e-commerce site told a completely different story. <strong>Cart abandonment sat at 71%</strong>, and the product experience was generic enough to belong to any budget retailer.</p>
+    <p class="cs-text">My mandate: redesign product discovery and checkout to match the brand's luxury positioning. As an interior designer, I understood exactly what this audience needed, and what they'd reject.</p>
     <div class="cs-cards">
-      <div class="cs-card"><div class="cs-card-num">71%</div><div class="cs-card-label">Cart Abandonment</div><div class="cs-card-desc">Most users dropped off before purchasing — often at the product page stage.</div></div>
-      <div class="cs-card"><div class="cs-card-num">4.2s</div><div class="cs-card-label">Avg. Time on PDP</div><div class="cs-card-desc">Product pages weren't holding attention — users weren't getting what they needed to commit.</div></div>
+      <div class="cs-card"><div class="cs-card-num">71%</div><div class="cs-card-label">Cart Abandonment</div><div class="cs-card-desc">Most users dropped off before purchasing, often at the product page stage.</div></div>
+      <div class="cs-card"><div class="cs-card-num">4.2s</div><div class="cs-card-label">Avg. Time on PDP</div><div class="cs-card-desc">Product pages weren't holding attention; users weren't getting what they needed to commit.</div></div>
       <div class="cs-card"><div class="cs-card-num">0%</div><div class="cs-card-label">Room Visualizer Use</div><div class="cs-card-desc">An existing AR room tool was buried so deep that virtually no users ever found it.</div></div>
     </div>
 
@@ -206,7 +212,7 @@
     <div class="img-placeholder iph-swap">
       <div class="iph-icon">🖥️</div>
       <div class="iph-label">Replace with: Original Website Screenshot</div>
-      <div class="iph-hint">Screenshot of the original Maison Éclat product listing page showing the generic, brand-inconsistent design</div>
+      <div class="iph-hint">Screenshot of the original Luxora product listing page showing the generic, brand-inconsistent design</div>
       <div class="iph-filename">→ save as: luxury-original-website.jpg</div>
     </div>
 
@@ -217,12 +223,12 @@
 
   <!-- 02 RESEARCH -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">02 — Research & Discovery</div>
+    <div class="cs-section-label">02: Research & Discovery</div>
     <h2 class="cs-section-title">What Luxury Shoppers<br>Actually Need</h2>
     <div class="cs-divider"></div>
-    <p class="cs-text">I analyzed Hotjar heatmaps and session recordings, then conducted <strong>12 interviews with high-intent luxury furniture shoppers</strong>. The pattern was clear: they needed to be seduced before they wanted specs.</p>
+    <p class="cs-text">I analyzed Luxora heatmaps and session recordings, then conducted <strong>12 interviews with high-intent luxury furniture shoppers</strong>. The pattern was clear: they needed to be seduced before they wanted specs.</p>
     <div class="cs-quote">
-      <p>"When I'm spending this much on a sofa, I need to see it in a room that looks like mine. And I need to feel like the brand understands taste — not just products."</p>
+      <p>"When I'm spending this much on a sofa, I need to see it in a room that looks like mine. And I need to feel like the brand understands taste, not just products."</p>
       <cite>— Interview participant, 44, homeowner</cite>
     </div>
 
@@ -230,13 +236,13 @@
     <div class="img-placeholder iph-medium">
       <div class="iph-icon">🔍</div>
       <div class="iph-label">Replace with: Competitive Analysis Board</div>
-      <div class="iph-hint">Screenshot of your Figma or Miro competitive teardown comparing Maison Éclat vs. RH, Design Within Reach, and others</div>
+      <div class="iph-hint">Screenshot of your Figma or Miro competitive teardown comparing Luxora vs. RH, Design Within Reach, and others</div>
       <div class="iph-filename">→ save as: luxury-competitive-analysis.jpg</div>
     </div>
 
     <div class="principles">
       <div class="principle"><div class="principle-num">01</div><div class="principle-title">Inspire First</div><div class="principle-desc">Lead with editorial photography and room context before product specs enter the picture.</div></div>
-      <div class="principle"><div class="principle-num">02</div><div class="principle-title">Inform Second</div><div class="principle-desc">Material, provenance, and craftsmanship details build conviction — once the user is emotionally engaged.</div></div>
+      <div class="principle"><div class="principle-num">02</div><div class="principle-title">Inform Second</div><div class="principle-desc">Material, provenance, and craftsmanship details build conviction, once the user is emotionally engaged.</div></div>
       <div class="principle"><div class="principle-num">03</div><div class="principle-title">Transact Third</div><div class="principle-desc">The checkout is a commitment ceremony, not a form. Make it feel effortless and reassuring.</div></div>
     </div>
 
@@ -245,10 +251,10 @@
 
   <!-- 03 PROCESS -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">03 — Process & Wireframes</div>
+    <div class="cs-section-label">03: Process & Wireframes</div>
     <h2 class="cs-section-title">Designing for<br>Conviction</h2>
     <div class="cs-divider"></div>
-    <p class="cs-text">I restructured the entire site around the principle: <strong>inspire first, inform second, transact third.</strong> Every screen was evaluated against this order — if it didn't inspire first, it didn't belong at the top of the experience.</p>
+    <p class="cs-text">I restructured the entire site around the principle: <strong>inspire first, inform second, transact third.</strong> Every screen was evaluated against this order: if it didn't inspire first, it didn't belong at the top of the experience.</p>
 
     <!-- 📸 SWAP: Sketches / IA diagrams -->
     <div class="img-placeholder iph-medium">
@@ -260,13 +266,18 @@
 
     <!-- BEFORE / AFTER PRODUCT PAGE COMPARISON -->
     <div class="compare-wrap reveal">
-      <div class="compare-label">Product Page — Before & After Redesign</div>
+      <div class="compare-label">Product Page: Before & After Redesign</div>
       <div class="compare-grid">
+
+        <!-- BEFORE -->
         <div class="cp">
-          <div class="cp-head"><div class="cp-dot" style="background:var(--muted);"></div><div class="cp-tag">Before — Generic Layout</div></div>
+          <div class="cp-head"><div class="cp-dot" style="background:var(--muted);"></div><div class="cp-tag">Before: Generic Layout</div></div>
           <div class="cp-body">
+            <!-- Generic nav -->
             <div class="pg-nav"><div class="pg-nav-logo"></div><div class="pg-nav-links"><div class="pg-nav-link"></div><div class="pg-nav-link"></div><div class="pg-nav-link"></div></div></div>
+            <!-- Promo banner -->
             <div class="pg-banner"><div class="pg-banner-txt"></div></div>
+            <!-- Generic product grid — looks like any ecommerce site -->
             <div class="pg-grid">
               <div class="pg-item"><div class="pg-img"></div><div class="pg-info"><div class="pg-name"></div><div class="pg-price"></div></div></div>
               <div class="pg-item"><div class="pg-img"></div><div class="pg-info"><div class="pg-name"></div><div class="pg-price"></div></div></div>
@@ -275,18 +286,31 @@
               <div class="pg-item"><div class="pg-img"></div><div class="pg-info"><div class="pg-name"></div><div class="pg-price"></div></div></div>
               <div class="pg-item"><div class="pg-img"></div><div class="pg-info"><div class="pg-name"></div><div class="pg-price"></div></div></div>
             </div>
+            <!-- Callout annotations -->
+            <div class="cp-callouts">
+              <div class="cp-callout cp-callout-bad">⚠ Generic grid — no brand identity</div>
+              <div class="cp-callout cp-callout-bad">⚠ No editorial context or storytelling</div>
+              <div class="cp-callout cp-callout-bad">⚠ No room visualiser or material detail</div>
+              <div class="cp-callout cp-callout-bad">⚠ "Add to Cart" feels transactional, not luxe</div>
+            </div>
           </div>
         </div>
+
+        <!-- AFTER -->
         <div class="cp">
-          <div class="cp-head"><div class="cp-dot" style="background:var(--gold);"></div><div class="cp-tag" style="color:var(--gold);">After — Editorial PDP</div></div>
+          <div class="cp-head"><div class="cp-dot" style="background:var(--gold);"></div><div class="cp-tag" style="color:var(--gold);">After: Editorial PDP</div></div>
           <div class="cp-body">
-            <div class="ep-header"><div class="ep-logo">MAISON ÉCLAT</div><div class="ep-nav-items"><div class="ep-ni"></div><div class="ep-ni"></div><div class="ep-ni"></div></div></div>
+            <!-- Luxora branded nav -->
+            <div class="ep-header"><div class="ep-logo">LUXORA</div><div class="ep-nav-items"><div class="ep-ni"></div><div class="ep-ni"></div><div class="ep-ni"></div></div></div>
+            <!-- Full-bleed hero image with badge -->
             <div class="ep-hero"><div class="ep-hero-item"></div><div class="ep-hero-badge"><span>New Collection</span></div></div>
             <div class="ep-info">
+              <!-- Editorial product identity -->
               <div class="ep-tag-line">Seating · Handcrafted Oak</div>
               <div class="ep-name"></div><div class="ep-name2"></div>
               <div class="ep-price"></div>
               <div class="ep-divider"></div>
+              <!-- Material swatches -->
               <div class="ep-swatch-label">Select Material</div>
               <div class="ep-swatches">
                 <div class="ep-sw" style="background:#c9a96e;border:2px solid var(--gold);"></div>
@@ -294,19 +318,28 @@
                 <div class="ep-sw" style="background:#e8e0d8;"></div>
                 <div class="ep-sw" style="background:#3d3530;"></div>
               </div>
+              <!-- Luxury CTA language -->
               <div class="ep-cta"><span>Reserve This Piece</span></div>
               <div class="ep-secondary"><span>↗ View in Your Room</span></div>
             </div>
+            <!-- Callout annotations -->
+            <div class="cp-callouts">
+              <div class="cp-callout cp-callout-good">✓ Full-bleed hero image, editorial feel</div>
+              <div class="cp-callout cp-callout-good">✓ Material swatches with tactile detail</div>
+              <div class="cp-callout cp-callout-good">✓ "View in Your Room" visualiser CTA</div>
+              <div class="cp-callout cp-callout-good">✓ "Reserve This Piece" — language that matches buyer self-image</div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
 
     <!-- CHECKOUT BEFORE/AFTER -->
     <div class="checkout-compare reveal">
-      <div class="cc-label">Checkout Flow — Reduced from 5 Steps to 2</div>
+      <div class="cc-label">Checkout Flow: Reduced from 5 Steps to 2</div>
       <div class="cc-panel">
-        <div class="cc-tag" style="color:var(--muted);"><span class="cc-dot" style="background:var(--muted);"></span>Before — 5 Step Checkout</div>
+        <div class="cc-tag" style="color:var(--muted);"><span class="cc-dot" style="background:var(--muted);"></span>Before: 5 Step Checkout</div>
         <div class="cc-steps">
           <div class="cc-step-row"><div class="cc-step-num old">1</div><div class="cc-step-bar old"></div></div>
           <div class="cc-step-row"><div class="cc-step-num old">2</div><div class="cc-step-bar old"></div></div>
@@ -316,7 +349,7 @@
         </div>
       </div>
       <div class="cc-panel">
-        <div class="cc-tag" style="color:var(--gold);"><span class="cc-dot" style="background:var(--gold);"></span>After — 2 Screen Checkout</div>
+        <div class="cc-tag" style="color:var(--gold);"><span class="cc-dot" style="background:var(--gold);"></span>After: 2 Screen Checkout</div>
         <div class="cc-steps">
           <div class="cc-step-row"><div class="cc-step-num new">1</div><div class="cc-step-bar active"></div></div>
           <div class="cc-step-row"><div class="cc-step-num new">2</div><div class="cc-step-bar new"></div></div>
@@ -331,7 +364,7 @@
     <div class="img-placeholder iph-wide">
       <div class="iph-icon">🖥️</div>
       <div class="iph-label">Replace with: Figma Wireframes</div>
-      <div class="iph-hint">Export of your mid-fidelity wireframes — homepage, PDP, and 2-step checkout flow laid out side by side</div>
+      <div class="iph-hint">Export of your mid-fidelity wireframes: homepage, PDP, and 2-step checkout flow laid out side by side</div>
       <div class="iph-filename">→ save as: luxury-wireframes.png</div>
     </div>
 
@@ -339,22 +372,22 @@
       <div class="cs-step"><div class="cs-step-num">01</div><div><div class="cs-step-title">Editorial Homepage</div><div class="cs-step-desc">Replaced category-first navigation with room-based entry: "Living Room," "Dining," "Bedroom." Browsing by aspiration, not taxonomy.</div></div></div>
       <div class="cs-step"><div class="cs-step-num">02</div><div><div class="cs-step-title">Immersive Product Detail Page</div><div class="cs-step-desc">Full-bleed lifestyle imagery, material swatch selector, room context photos surfaced before spec sheets. Room visualizer promoted to primary CTA.</div></div></div>
       <div class="cs-step"><div class="cs-step-num">03</div><div><div class="cs-step-title">Streamlined Checkout</div><div class="cs-step-desc">5 steps reduced to 2 screens. White-glove delivery and installation messaging brought forward to reduce commitment anxiety.</div></div></div>
-      <div class="cs-step"><div class="cs-step-num">04</div><div><div class="cs-step-title">A/B Testing</div><div class="cs-step-desc">"Reserve This Piece" outperformed "Add to Cart" by 14% with the target demographic — language that matched their self-image.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">04</div><div><div class="cs-step-title">A/B Testing</div><div class="cs-step-desc">"Reserve This Piece" outperformed "Add to Cart" by 14% with the target demographic, using language that matched their self-image.</div></div></div>
     </div>
   </div>
 
   <!-- 04 FINAL DESIGN -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">04 — Final Design</div>
+    <div class="cs-section-label">04: Final Design</div>
     <h2 class="cs-section-title">The Showroom,<br>Digitized</h2>
     <div class="cs-divider"></div>
-    <p class="cs-text">The final design gave Maison Éclat a digital experience that finally matched their physical brand — unhurried, beautiful, and completely confident in its own taste level. My interior design background was the unfair advantage here: I understood what high-end furniture buyers care about in a way a purely digital designer might have missed.</p>
+    <p class="cs-text">The final design gave Luxora a digital experience that finally matched their physical brand: unhurried, beautiful, and completely confident in its own taste level. My interior design background was the unfair advantage here: I understood what high-end furniture buyers care about in a way a purely digital designer might have missed.</p>
 
     <!-- 📸 SWAP: Final hi-fi desktop screens -->
     <div class="img-placeholder iph-wide">
       <div class="iph-icon">🎨</div>
       <div class="iph-label">Replace with: Final Hi-Fidelity Screens</div>
-      <div class="iph-hint">Your polished Figma finals — homepage, PDP, and checkout in a side-by-side spread showing the refined editorial aesthetic</div>
+      <div class="iph-hint">Your polished Figma finals: homepage, PDP, and checkout in a side-by-side spread showing the refined editorial aesthetic</div>
       <div class="iph-filename">→ save as: luxury-final-screens.png</div>
     </div>
 
@@ -362,43 +395,268 @@
     <div class="img-placeholder iph-medium">
       <div class="iph-icon">📱</div>
       <div class="iph-label">Replace with: Mobile Responsive Screens</div>
-      <div class="iph-hint">Mobile web screens showing how the editorial layout adapts — especially the PDP and checkout on smaller viewports</div>
+      <div class="iph-hint">Mobile web screens showing how the editorial layout adapts, especially the PDP and checkout on smaller viewports</div>
       <div class="iph-filename">→ save as: luxury-mobile-screens.png</div>
     </div>
 
     <div class="cs-quote">
       <p>"For the first time, our website feels like us. Customers are spending longer on product pages and asking fewer pre-purchase questions."</p>
-      <cite>— Head of Digital, Maison Éclat</cite>
+      <cite>— Head of Digital, Luxora</cite>
     </div>
   </div>
 
   <!-- 05 RESULTS -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">05 — Results & Impact</div>
+    <div class="cs-section-label">05: Results & Impact</div>
     <h2 class="cs-section-title">Where Luxury Meets<br>Conversion</h2>
     <div class="cs-divider"></div>
-    <p class="cs-text">Three months post-launch, the redesign delivered improvement across every tracked metric — and qualitative signals suggested an equally significant brand perception shift.</p>
+    <p class="cs-text">Three months post-launch, the redesign delivered improvement across every tracked metric, and qualitative signals suggested an equally significant brand perception shift.</p>
     <div class="cs-results">
-      <div class="cs-result"><div class="cs-result-num">+23%</div><div class="cs-result-title">Conversion Rate</div><div class="cs-result-desc">Overall e-commerce conversion improved from 1.4% to 1.72% — significant at Maison Éclat's average order value.</div></div>
+      <div class="cs-result"><div class="cs-result-num">+23%</div><div class="cs-result-title">Conversion Rate</div><div class="cs-result-desc">Overall e-commerce conversion improved from 1.4% to 1.72%, significant at Luxora's average order value.</div></div>
       <div class="cs-result"><div class="cs-result-num">−41%</div><div class="cs-result-title">Cart Abandonment</div><div class="cs-result-desc">Abandonment fell from 71% to 42% following the checkout redesign and trust messaging improvements.</div></div>
-      <div class="cs-result"><div class="cs-result-num">3.1×</div><div class="cs-result-title">Room Visualizer Use</div><div class="cs-result-desc">Surfacing the visualizer as a primary CTA increased usage by 310% — and users who used it converted at 2× baseline.</div></div>
+      <div class="cs-result"><div class="cs-result-num">3.1×</div><div class="cs-result-title">Room Visualizer Use</div><div class="cs-result-desc">Surfacing the visualizer as a primary CTA increased usage by 310%, and users who used it converted at 2× baseline.</div></div>
       <div class="cs-result"><div class="cs-result-num">+18%</div><div class="cs-result-title">Average Order Value</div><div class="cs-result-desc">Editorial "Complete the Room" modules lifted AOV by 18% as users discovered complementary pieces.</div></div>
     </div>
 
-    <!-- 📸 SWAP: Results dashboard or analytics screenshot -->
-    <div class="img-placeholder iph-medium">
-      <div class="iph-icon">📊</div>
-      <div class="iph-label">Replace with: Analytics Results Screenshot</div>
-      <div class="iph-hint">Screenshot from Hotjar, Google Analytics, or any tool showing before/after conversion data, funnel drop-off improvements</div>
-      <div class="iph-filename">→ save as: luxury-results-analytics.png</div>
+    <!-- ANALYTICS DASHBOARD -->
+    <div class="analytics-wrap reveal">
+
+      <!-- Header bar mimicking GA4 -->
+      <div class="an-header">
+        <div class="an-header-left">
+          <div class="an-logo">
+            <div class="an-logo-icon">
+              <div style="width:8px;height:8px;background:#e37400;border-radius:50%;"></div>
+              <div style="width:8px;height:8px;background:#e37400;border-radius:50%;opacity:.5;margin-left:-3px;"></div>
+              <div style="width:8px;height:8px;background:#e37400;border-radius:50%;opacity:.25;margin-left:-3px;"></div>
+            </div>
+            <span>Google Analytics</span>
+          </div>
+          <div class="an-property">Luxora · All Web Site Data</div>
+        </div>
+        <div class="an-date-range">
+          <span class="an-date-label">Comparison:</span>
+          <span class="an-date-val">Pre-launch (Oct–Dec) vs Post-launch (Jan–Mar)</span>
+        </div>
+      </div>
+
+      <!-- KPI Cards row -->
+      <div class="an-kpis">
+        <div class="an-kpi">
+          <div class="an-kpi-label">Conversion Rate</div>
+          <div class="an-kpi-row">
+            <div class="an-kpi-val">1.72%</div>
+            <div class="an-kpi-delta an-up">▲ +23%</div>
+          </div>
+          <div class="an-kpi-prev">was 1.40%</div>
+          <div class="an-kpi-bar-wrap"><div class="an-kpi-bar" style="width:72%;background:#34a853;"></div></div>
+        </div>
+        <div class="an-kpi">
+          <div class="an-kpi-label">Cart Abandonment</div>
+          <div class="an-kpi-row">
+            <div class="an-kpi-val">42.3%</div>
+            <div class="an-kpi-delta an-up">▼ −41%</div>
+          </div>
+          <div class="an-kpi-prev">was 71.0%</div>
+          <div class="an-kpi-bar-wrap"><div class="an-kpi-bar" style="width:42%;background:#34a853;"></div><div class="an-kpi-bar-ghost" style="width:29%;"></div></div>
+        </div>
+        <div class="an-kpi">
+          <div class="an-kpi-label">Avg. Order Value</div>
+          <div class="an-kpi-row">
+            <div class="an-kpi-val">$4,820</div>
+            <div class="an-kpi-delta an-up">▲ +18%</div>
+          </div>
+          <div class="an-kpi-prev">was $4,085</div>
+          <div class="an-kpi-bar-wrap"><div class="an-kpi-bar" style="width:78%;background:#34a853;"></div></div>
+        </div>
+        <div class="an-kpi">
+          <div class="an-kpi-label">Room Visualiser Use</div>
+          <div class="an-kpi-row">
+            <div class="an-kpi-val">31.4%</div>
+            <div class="an-kpi-delta an-up">▲ ×3.1</div>
+          </div>
+          <div class="an-kpi-prev">was 10.1%</div>
+          <div class="an-kpi-bar-wrap"><div class="an-kpi-bar" style="width:85%;background:#4285f4;"></div></div>
+        </div>
+      </div>
+
+      <!-- Conversion trend chart -->
+      <div class="an-section">
+        <div class="an-section-title">Conversion Rate Over Time</div>
+        <div class="an-chart-wrap">
+          <!-- Y axis labels -->
+          <div class="an-y-axis">
+            <span>2.0%</span><span>1.5%</span><span>1.0%</span><span>0.5%</span><span>0%</span>
+          </div>
+          <div class="an-chart">
+            <!-- Grid lines -->
+            <div class="an-grid-line" style="bottom:100%;"></div>
+            <div class="an-grid-line" style="bottom:75%;"></div>
+            <div class="an-grid-line" style="bottom:50%;"></div>
+            <div class="an-grid-line" style="bottom:25%;"></div>
+            <div class="an-grid-line" style="bottom:0%;"></div>
+            <!-- Launch marker -->
+            <div class="an-launch-line">
+              <div class="an-launch-label">Redesign Launch</div>
+            </div>
+            <!-- SVG line chart -->
+            <svg viewBox="0 0 500 120" preserveAspectRatio="none" style="width:100%;height:100%;position:absolute;top:0;left:0;">
+              <!-- Before line (grey — flat/low) -->
+              <polyline points="0,85 55,88 110,82 165,90 220,84" fill="none" stroke="#5f6368" stroke-width="2" stroke-dasharray="5,3"/>
+              <!-- After line (green — rises) -->
+              <polyline points="220,84 275,65 330,52 385,40 440,34 500,28" fill="none" stroke="#34a853" stroke-width="2.5"/>
+              <!-- Area fill after -->
+              <polygon points="220,84 275,65 330,52 385,40 440,34 500,28 500,120 220,120" fill="rgba(52,168,83,0.06)"/>
+              <!-- Launch dot -->
+              <circle cx="220" cy="84" r="5" fill="#4285f4" stroke="#fff" stroke-width="1.5"/>
+              <!-- Data point dots after -->
+              <circle cx="275" cy="65" r="3.5" fill="#34a853"/>
+              <circle cx="330" cy="52" r="3.5" fill="#34a853"/>
+              <circle cx="385" cy="40" r="3.5" fill="#34a853"/>
+              <circle cx="440" cy="34" r="3.5" fill="#34a853"/>
+              <circle cx="500" cy="28" r="3.5" fill="#34a853"/>
+              <!-- Tooltip on last point -->
+              <rect x="430" y="8" width="65" height="18" rx="3" fill="#34a853"/>
+              <text x="462" y="21" text-anchor="middle" font-family="sans-serif" font-size="9" fill="white" font-weight="700">1.72% ▲</text>
+            </svg>
+            <!-- X axis labels -->
+            <div class="an-x-axis">
+              <span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span>
+            </div>
+          </div>
+        </div>
+        <div class="an-legend">
+          <div class="an-leg-item"><div class="an-leg-line" style="background:#5f6368;opacity:.6;"></div><span>Before redesign</span></div>
+          <div class="an-leg-item"><div class="an-leg-line" style="background:#34a853;"></div><span>After redesign</span></div>
+          <div class="an-leg-item"><div class="an-leg-dot" style="background:#4285f4;"></div><span>Launch date</span></div>
+        </div>
+      </div>
+
+      <!-- Funnel comparison -->
+      <div class="an-section">
+        <div class="an-section-title">Checkout Funnel — Drop-off Comparison</div>
+        <div class="an-funnel">
+
+          <div class="an-funnel-col">
+            <div class="an-funnel-head" style="color:#5f6368;">Before</div>
+            <div class="an-funnel-step">
+              <div class="an-fs-label">Product Page View</div>
+              <div class="an-fs-bar-wrap"><div class="an-fs-bar" style="width:100%;background:#5f6368;opacity:.5;"></div></div>
+              <div class="an-fs-val">100%</div>
+            </div>
+            <div class="an-fs-drop" style="color:#ea4335;">↓ −38% drop</div>
+            <div class="an-funnel-step">
+              <div class="an-fs-label">Added to Cart</div>
+              <div class="an-fs-bar-wrap"><div class="an-fs-bar" style="width:62%;background:#5f6368;opacity:.5;"></div></div>
+              <div class="an-fs-val">62%</div>
+            </div>
+            <div class="an-fs-drop" style="color:#ea4335;">↓ −30% drop</div>
+            <div class="an-funnel-step">
+              <div class="an-fs-label">Checkout Started</div>
+              <div class="an-fs-bar-wrap"><div class="an-fs-bar" style="width:43%;background:#5f6368;opacity:.5;"></div></div>
+              <div class="an-fs-val">43%</div>
+            </div>
+            <div class="an-fs-drop" style="color:#ea4335;">↓ −30% drop</div>
+            <div class="an-funnel-step">
+              <div class="an-fs-label">Purchase Complete</div>
+              <div class="an-fs-bar-wrap"><div class="an-fs-bar" style="width:29%;background:#ea4335;opacity:.6;"></div></div>
+              <div class="an-fs-val" style="color:#ea4335;">29%</div>
+            </div>
+          </div>
+
+          <div class="an-funnel-divider"></div>
+
+          <div class="an-funnel-col">
+            <div class="an-funnel-head" style="color:#34a853;">After</div>
+            <div class="an-funnel-step">
+              <div class="an-fs-label">Product Page View</div>
+              <div class="an-fs-bar-wrap"><div class="an-fs-bar" style="width:100%;background:#34a853;opacity:.5;"></div></div>
+              <div class="an-fs-val">100%</div>
+            </div>
+            <div class="an-fs-drop" style="color:#34a853;">↓ −18% drop</div>
+            <div class="an-funnel-step">
+              <div class="an-fs-label">Added to Cart</div>
+              <div class="an-fs-bar-wrap"><div class="an-fs-bar" style="width:82%;background:#34a853;opacity:.6;"></div></div>
+              <div class="an-fs-val">82%</div>
+            </div>
+            <div class="an-fs-drop" style="color:#34a853;">↓ −14% drop</div>
+            <div class="an-funnel-step">
+              <div class="an-fs-label">Checkout Started</div>
+              <div class="an-fs-bar-wrap"><div class="an-fs-bar" style="width:71%;background:#34a853;opacity:.7;"></div></div>
+              <div class="an-fs-val">71%</div>
+            </div>
+            <div class="an-fs-drop" style="color:#34a853;">↓ −13% drop</div>
+            <div class="an-funnel-step">
+              <div class="an-fs-label">Purchase Complete</div>
+              <div class="an-fs-bar-wrap"><div class="an-fs-bar" style="width:58%;background:#34a853;"></div></div>
+              <div class="an-fs-val" style="color:#34a853;font-weight:700;">58% ▲</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
+
+    <style>
+      .analytics-wrap{background:#1e1e1e;border:1px solid #2a2a2a;border-radius:8px;overflow:hidden;margin:40px 0;font-family:'DM Sans',sans-serif;}
+      /* Header */
+      .an-header{background:#111;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2a2a2a;flex-wrap:wrap;gap:10px;}
+      .an-header-left{display:flex;align-items:center;gap:16px;}
+      .an-logo{display:flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;color:rgba(245,242,238,.7);}
+      .an-logo-icon{display:flex;align-items:center;}
+      .an-property{font-family:'Syne',sans-serif;font-size:.6rem;color:#555;border-left:1px solid #2a2a2a;padding-left:14px;}
+      .an-date-range{display:flex;align-items:center;gap:6px;}
+      .an-date-label{font-family:'Syne',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#555;}
+      .an-date-val{font-family:'Syne',sans-serif;font-size:.62rem;color:rgba(245,242,238,.5);background:#1a1a1a;padding:3px 10px;border-radius:3px;border:1px solid #2a2a2a;}
+      /* KPIs */
+      .an-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#2a2a2a;border-bottom:1px solid #2a2a2a;}
+      .an-kpi{background:#161616;padding:16px 18px;}
+      .an-kpi-label{font-family:'Syne',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#555;margin-bottom:8px;}
+      .an-kpi-row{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;}
+      .an-kpi-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--white);line-height:1;}
+      .an-kpi-delta{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;}
+      .an-up{color:#34a853;}
+      .an-kpi-prev{font-family:'Syne',sans-serif;font-size:.58rem;color:#444;margin-bottom:8px;}
+      .an-kpi-bar-wrap{height:3px;background:#2a2a2a;border-radius:2px;display:flex;overflow:hidden;}
+      .an-kpi-bar{height:100%;border-radius:2px;transition:width 1s ease;}
+      .an-kpi-bar-ghost{height:100%;background:rgba(234,67,53,.25);}
+      /* Sections */
+      .an-section{padding:20px 20px 16px;border-bottom:1px solid #2a2a2a;}
+      .an-section:last-child{border-bottom:none;}
+      .an-section-title{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:16px;}
+      /* Chart */
+      .an-chart-wrap{display:flex;gap:8px;height:130px;}
+      .an-y-axis{display:flex;flex-direction:column;justify-content:space-between;font-family:'Syne',sans-serif;font-size:.52rem;color:#444;text-align:right;width:28px;flex-shrink:0;padding-bottom:16px;}
+      .an-chart{flex:1;position:relative;}
+      .an-grid-line{position:absolute;left:0;right:0;height:1px;background:#222;}
+      .an-launch-line{position:absolute;left:44%;top:0;bottom:16px;width:1px;background:rgba(66,133,244,.4);border-left:1px dashed rgba(66,133,244,.4);}
+      .an-launch-label{position:absolute;top:2px;left:4px;font-family:'Syne',sans-serif;font-size:.42rem;color:#4285f4;white-space:nowrap;letter-spacing:.5px;text-transform:uppercase;}
+      .an-x-axis{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;font-family:'Syne',sans-serif;font-size:.52rem;color:#444;}
+      .an-legend{display:flex;gap:20px;margin-top:10px;flex-wrap:wrap;}
+      .an-leg-item{display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:.6rem;color:#555;}
+      .an-leg-line{width:20px;height:2px;border-radius:1px;}
+      .an-leg-dot{width:8px;height:8px;border-radius:50%;}
+      /* Funnel */
+      .an-funnel{display:grid;grid-template-columns:1fr 1px 1fr;gap:20px;}
+      .an-funnel-divider{background:#2a2a2a;}
+      .an-funnel-col{display:flex;flex-direction:column;gap:6px;}
+      .an-funnel-head{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+      .an-funnel-step{background:#111;border:1px solid #222;border-radius:3px;padding:8px 10px;}
+      .an-fs-label{font-family:'Syne',sans-serif;font-size:.58rem;color:rgba(245,242,238,.5);margin-bottom:5px;}
+      .an-fs-bar-wrap{height:5px;background:#1a1a1a;border-radius:2px;margin-bottom:4px;overflow:hidden;}
+      .an-fs-bar{height:100%;border-radius:2px;}
+      .an-fs-val{font-family:'Bebas Neue',sans-serif;font-size:.85rem;color:rgba(245,242,238,.6);}
+      .an-fs-drop{font-family:'Syne',sans-serif;font-size:.55rem;font-weight:700;text-align:center;padding:0 4px;}
+      @media(max-width:768px){.an-kpis{grid-template-columns:1fr 1fr;}.an-funnel{grid-template-columns:1fr;}.an-funnel-divider{display:none;}.an-header{flex-direction:column;align-items:flex-start;}}
+    </style>
   </div>
 
 </div>
 
 <div class="cs-next">
-  <div><div class="cs-next-label">Next Case Study</div><div class="cs-next-title">Airbnb Feature Redesign</div></div>
-  <a href="airbnb-case-study.html" class="cs-next-link">View Case Study</a>
+  <div><div class="cs-next-label">Next Case Study</div><div class="cs-next-title">Launchpad Job Tracker</div></div>
+  <a href="jobtracker-case-study.html" class="cs-next-link">View Case Study</a>
 </div>
 <footer>
   <span class="footer-copy">© 2025 Mia Designer</span>
